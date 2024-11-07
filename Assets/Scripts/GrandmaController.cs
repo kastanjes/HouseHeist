@@ -45,7 +45,7 @@ public class GrandmaController : MonoBehaviour
 
     void Start()
     {
-        currentState = StateMachine.WalkToLight01;
+        currentState = StateMachine.None;
     }
 
     void DetectPlayersInCone()
@@ -216,6 +216,11 @@ public class GrandmaController : MonoBehaviour
                 path.RemoveAt(x);
             }
         }
+    }
+
+    public void StartInvestigation() 
+    {
+        currentState = StateMachine.WalkToLight01;
     }
 }
 

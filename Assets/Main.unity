@@ -738,6 +738,7 @@ MonoBehaviour:
   speed: 0.02
   playerGraphics: {fileID: 1371986457}
   playerLight: {fileID: 2091743303}
+  TotalWeightInKg: 1
 --- !u!50 &155836018
 Rigidbody2D:
   serializedVersion: 4
@@ -8311,6 +8312,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1521441545336769620, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
   m_PrefabInstance: {fileID: 1352278275}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1365648028
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1714734121}
+    m_Modifications:
+    - target: {fileID: 4605686014067085126, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_Name
+      value: Knirkeable_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.1058755
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+--- !u!4 &1365648029 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+  m_PrefabInstance: {fileID: 1365648028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1369449643 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1547191541552135293, guid: 2ee5edf2a486af74689a6aadd2c839b1, type: 3}
@@ -8756,6 +8819,7 @@ MonoBehaviour:
   speed: 0.02
   playerGraphics: {fileID: 832772903}
   playerLight: {fileID: 707636820}
+  TotalWeightInKg: 1
 --- !u!50 &1467486968
 Rigidbody2D:
   serializedVersion: 4
@@ -9462,6 +9526,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1521441545336769620, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
   m_PrefabInstance: {fileID: 1702807139}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1714734120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1714734121}
+  m_Layer: 0
+  m_Name: Knirkeables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1714734121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714734120}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5759723, y: -0.6219642, z: -6.1058755}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1849733597}
+  - {fileID: 1365648029}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1718531212
 GameObject:
   m_ObjectHideFlags: 0
@@ -9969,6 +10066,11 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!4 &1849733597 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+  m_PrefabInstance: {fileID: 22110191256975373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1852049309
 GameObject:
   m_ObjectHideFlags: 0
@@ -11590,6 +11692,63 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1001 &22110191256975373
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1714734121}
+    m_Modifications:
+    - target: {fileID: 4605686014067085126, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_Name
+      value: Knirkeable_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757019279424074566, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c725cb27c9e9fea4385ef975599d3f83, type: 3}
 --- !u!1001 &5712858548573913855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11835,3 +11994,4 @@ SceneRoots:
   - {fileID: 934378264}
   - {fileID: 341012711}
   - {fileID: 1022880463}
+  - {fileID: 1714734121}

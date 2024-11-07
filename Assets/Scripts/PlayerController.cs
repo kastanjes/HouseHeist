@@ -20,6 +20,13 @@ public class PlayerController : MonoBehaviour
 
     bool canPlayerMove = true;
 
+    public float TotalWeightInKg = 1.0f;
+
+    float CalculateAndGetSpeed()
+    {
+        return speed * 1 / TotalWeightInKg ; // more weight makes you slower
+    }
+
 
     void Start()
     {
@@ -59,8 +66,8 @@ public class PlayerController : MonoBehaviour
 
 
             Vector2 position = transform.position;
-            position.x = position.x + speed * horizontal;
-            position.y = position.y + speed * vertical;
+            position.x = position.x + CalculateAndGetSpeed() * horizontal;
+            position.y = position.y + CalculateAndGetSpeed() * vertical;
             transform.position = position;
         }
 
@@ -104,8 +111,8 @@ public class PlayerController : MonoBehaviour
 
 
             Vector2 position = transform.position;
-            position.x = position.x + speed * horizontal;
-            position.y = position.y + speed * vertical;
+            position.x = position.x + CalculateAndGetSpeed() * horizontal;
+            position.y = position.y + CalculateAndGetSpeed() * vertical;
             transform.position = position;
         }
 
@@ -153,7 +160,7 @@ public class PlayerController : MonoBehaviour
                 playerLight.SetActive(false);
             } else if (closestStealable != null)
             {
-                closestStealable.Steal();
+                closestStealable.Steal(this);
             }
 
             if (playerNumber == PlayerNumber.PlayerTwo) 

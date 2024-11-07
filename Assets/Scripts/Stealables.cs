@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Stealables : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float WeightInKg = 1.0f;
+
     void Start()
     {
         
     }
     
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    public void Steal() 
+    public void Steal(PlayerController stolenByPlayer) 
     {
         Destroy(this.gameObject);
+
+        stolenByPlayer.TotalWeightInKg += WeightInKg;
 
         int numberOfStealables = FindObjectsOfType<Stealables>().Length;
 
