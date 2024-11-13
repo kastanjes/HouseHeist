@@ -32,25 +32,25 @@ public class VisionCone : MonoBehaviour
     }
 
     public bool IsPlayerInVisionCone()
+{
+    float angleStep = viewAngle / resolution;
+    float startAngle = -viewAngle / 2;
+
+    for (int i = 0; i <= resolution; i++)
     {
-        Vector3 directionToPlayer = playerTransform.position - enemyTransform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
+        float currentAngle = startAngle + (i * angleStep);
+        Vector3 direction = Quaternion.Euler(0, 0, currentAngle) * enemyTransform.up;
 
-        if (distanceToPlayer <= viewDistance)
+        RaycastHit2D hit = Physics2D.Raycast(enemyTransform.position, direction, viewDistance);
+
+        if (hit.collider != null && hit.collider.transform == playerTransform)
         {
-            float angleToPlayer = Vector3.Angle(enemyTransform.up, directionToPlayer);
-
-            if (angleToPlayer <= viewAngle / 2)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(enemyTransform.position, directionToPlayer.normalized, distanceToPlayer);
-                if (hit.collider == null || hit.collider.transform == playerTransform)
-                {
-                    return true;  // Player is within vision cone
-                }
-            }
+            return true;  // Player is within vision cone and detected by the raycast
         }
-        return false;
     }
+    return false;
+}
+
 
     void AlignWithEnemy()
     {
