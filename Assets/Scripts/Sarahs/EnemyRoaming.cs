@@ -1,7 +1,11 @@
+using UnityEditor.Timeline;
 using UnityEngine;
 
 public class EnemyRoaming : MonoBehaviour
 {
+    [SerializeField] private FieldOfView fieldOfView;
+
+
     public float speed = 2f;                       // Movement speed of the enemy
     public float minPauseTime = 1f;                // Minimum time for a pause
     public float maxPauseTime = 3f;                // Maximum time for a pause
@@ -22,6 +26,7 @@ public class EnemyRoaming : MonoBehaviour
 
     void Update()
     {
+
         stateTimer -= Time.deltaTime;
 
         if (isPaused)
@@ -46,8 +51,20 @@ public class EnemyRoaming : MonoBehaviour
             if (stateTimer <= 0)
             {
                 SetNextState();                    // Switch to the pause state
+            } 
+        // Update Field of View
+            if (fieldOfView != null)
+            {
+                fieldOfView.SetOrigin(transform.position); // Set the FOV origin to enemy's position
+                fieldOfView.SetAimDirection(direction);   // Set the FOV direction to enemy's movement direction
+            }
+        
+            if (stateTimer <= 0)
+            {
+                SetNextState();
             }
         }
+
     }
 
     void ChooseNewDirection()

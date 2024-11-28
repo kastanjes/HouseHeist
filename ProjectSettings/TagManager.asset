@@ -45,6 +45,9 @@ TagManager:
   - name: Forground
     uniqueID: 2109290349
     locked: 0
+  - name: Player/Enemy
+    uniqueID: 2327899055
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
