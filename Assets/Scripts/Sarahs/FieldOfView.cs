@@ -92,29 +92,28 @@ public class FieldOfView : MonoBehaviour
 
     public void SetOrigin(Vector3 origin) {
         this.origin = origin;
-        transform.position = origin;
+        // transform.position = origin;
         Debug.Log("FOV Origin: " + origin);
 
     }
 
  public void SetAimDirection(Vector3 aimDirection)
 {
-    // Check the direction and set the starting angle accordingly
+    
     if (aimDirection.y > 0.1f) // Moving up
     {
-        startingAngle = 180f - fov / 2f; // 0 degrees points up in Unity's 2D space
     }
     else if (aimDirection.y < -0.1f) // Moving down
     {
-        startingAngle = 0f - fov / 2f; // 180 degrees points down
+        startingAngle = 0f - fov / 2f; 
     }
     else if (aimDirection.x > 0.1f) // Moving right
     {
-        startingAngle = 90f - fov / 2f; // 90 degrees points right
+        startingAngle = 90f - fov / 2f; 
     }
     else if (aimDirection.x < -0.1f) // Moving left
     {
-        startingAngle = 270f - fov / 2f; // 270 degrees points left
+        startingAngle = 270f - fov / 2f; 
     }
     else
     {
