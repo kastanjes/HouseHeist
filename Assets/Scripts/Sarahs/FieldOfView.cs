@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 
 public class FieldOfView : MonoBehaviour
@@ -58,7 +59,7 @@ public class FieldOfView : MonoBehaviour
             else
             // Collision with object
             {
-                vertex = raycastHit2D.point;
+                vertex = raycastHit2D.point - (Vector2)transform.position;
             }
             vertices[vertexIndex] = vertex;
 
