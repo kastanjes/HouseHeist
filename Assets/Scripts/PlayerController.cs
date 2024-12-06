@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 
 public class PlayerController : MonoBehaviour
@@ -20,17 +21,31 @@ public class PlayerController : MonoBehaviour
 
     bool canPlayerMove = true;
 
-    public float TotalWeightInKg = 1.0f;
+    public float totalWeightInKg = 1.0f;
+
+    public Vector3 targetPosition;
 
     float CalculateAndGetSpeed()
     {
-        return speed * 1 / TotalWeightInKg ; // more weight makes you slower
+        return speed * 1 / totalWeightInKg; // more weight makes you slower
     }
 
 
     void Start()
     {
+        targetPosition = transform.position;
+    }
 
+    private void Update()
+    {
+        if (playerNumber == PlayerNumber.PlayerOne)
+        {
+            UpdatePlayerOne();
+        }
+        else if (playerNumber == PlayerNumber.PlayerTwo)
+        {
+            UpdatePlayerTwo();
+        }
     }
 
 
@@ -68,7 +83,7 @@ public class PlayerController : MonoBehaviour
             Vector2 position = transform.position;
             position.x = position.x + CalculateAndGetSpeed() * horizontal;
             position.y = position.y + CalculateAndGetSpeed() * vertical;
-            transform.position = position;
+            targetPosition = position;
         }
 
         // Player pickup and interaction
@@ -113,7 +128,7 @@ public class PlayerController : MonoBehaviour
             Vector2 position = transform.position;
             position.x = position.x + CalculateAndGetSpeed() * horizontal;
             position.y = position.y + CalculateAndGetSpeed() * vertical;
-            transform.position = position;
+            targetPosition = position;
         }
 
 
@@ -126,18 +141,10 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
-        if (playerNumber == PlayerNumber.PlayerOne)
-        {
-            UpdatePlayerOne();
-        }
-        else if (playerNumber == PlayerNumber.PlayerTwo)
-        {
-            UpdatePlayerTwo();
-        }
+        transform.position = targetPosition;   
     }
-
 
 
     void Interact()
@@ -146,7 +153,10 @@ public class PlayerController : MonoBehaviour
         {
             playerGraphics.SetActive(true);
             canPlayerMove = true;
-            playerLight.SetActive(true);
+            if (playerLight != null) 
+            { 
+                playerLight.SetActive(true);
+            }
         }
         else
         {
@@ -157,7 +167,10 @@ public class PlayerController : MonoBehaviour
             {
                 playerGraphics.SetActive(false);
                 canPlayerMove = false;
-                playerLight.SetActive(false);
+                if (playerLight != null)
+                {
+                    playerLight.SetActive(false);
+                }
             } else if (closestStealable != null)
             {
                 closestStealable.Steal(this);

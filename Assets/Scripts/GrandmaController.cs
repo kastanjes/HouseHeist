@@ -96,7 +96,7 @@ public class GrandmaController : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         DetectPlayersInCone();
 
