@@ -1,90 +1,120 @@
-using UnityEditor.Timeline;
 using UnityEngine;
 
 public class EnemyRoaming : MonoBehaviour
 {
-    [SerializeField] private FieldOfView fieldOfView;
-
-
     public float speed = 2f;                       // Movement speed of the enemy
+    public float chaseSpeed = 3.5f;                // Speed when chasing the player
     public float minPauseTime = 1f;                // Minimum time for a pause
     public float maxPauseTime = 3f;                // Maximum time for a pause
     public float minMoveTime = 2f;                 // Minimum time to move
     public float maxMoveTime = 5f;                 // Maximum time to move
+    public float stopDistance = 1.5f;              // Minimum distance to maintain from the player
 
-    private Vector2 direction;                     // Current movement direction
+    public Vector2 direction;                     // Current movement direction
     private float stateTimer;                      // Timer for the current state
     private bool isPaused;                         // Determines if the enemy is paused
+    private bool isChasing;                        // Determines if the enemy is in chasing mode
+    private Transform playerToChase;              // Reference to the detected player
     private Animator animator;                     // Reference to the Animator component
+    private Rigidbody2D rb;                        // Reference to the Rigidbody2D component
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();          // Get the Rigidbody2D component
         animator = GetComponent<Animator>();       // Get the Animator component
         ChooseNewDirection();
         SetNextState();                            // Set initial state (either move or pause)
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        if (isChasing)
+        {
+            ChasePlayer();                         // Chase the player
+        }
+        else
+        {
+            Roam();
+        }
+    }
 
+    void Roam()
+    {
         stateTimer -= Time.deltaTime;
 
         if (isPaused)
         {
-            // If paused, wait until the timer runs out
             if (stateTimer <= 0)
             {
-                ChooseNewDirection();               // Set a new direction
-                SetNextState();                    // Switch to the move state
+                ChooseNewDirection();
+                SetNextState();
             }
         }
         else
         {
-            // Move the enemy in the chosen direction
-            transform.Translate(direction * speed * Time.deltaTime);
+            // Move using Rigidbody2D to respect physics
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
 
-            // Update animation parameters based on movement direction
+            // Update animator parameters
             animator.SetFloat("Horizontal", direction.x);
             animator.SetFloat("Vertical", direction.y);
 
-            // If moving, check if the timer has run out to pause
-            if (stateTimer <= 0)
-            {
-                SetNextState();                    // Switch to the pause state
-            } 
-        // Update Field of View
-            if (fieldOfView != null)
-            {
-                fieldOfView.SetOrigin(transform.position); // Set the FOV origin to enemy's position
-                fieldOfView.SetAimDirection(direction);   // Set the FOV direction to enemy's movement direction
-            }
-        
             if (stateTimer <= 0)
             {
                 SetNextState();
             }
         }
+    }
 
+    void ChasePlayer()
+    {
+        if (playerToChase == null)
+        {
+            isChasing = false;
+            SetNextState();
+            return;
+        }
+
+        // Calculate direction to the player
+        Vector2 directionToPlayer = (playerToChase.position - transform.position).normalized;
+
+        // Check distance to the player
+        float distanceToPlayer = Vector2.Distance(transform.position, playerToChase.position);
+
+        if (distanceToPlayer > stopDistance)
+        {
+            // Move towards the player while maintaining physics
+            rb.MovePosition(rb.position + directionToPlayer * chaseSpeed * Time.fixedDeltaTime);
+
+            // Update animator parameters
+            animator.SetFloat("Horizontal", directionToPlayer.x);
+            animator.SetFloat("Vertical", directionToPlayer.y);
+        }
+        else
+        {
+            // Stop moving but continue facing the player
+            animator.SetFloat("Horizontal", directionToPlayer.x);
+            animator.SetFloat("Vertical", directionToPlayer.y);
+        }
     }
 
     void ChooseNewDirection()
     {
-        // Pick a random direction, only up, down, left, or right
-        int directionIndex = Random.Range(0, 4); // Randomly pick one of four directions
+        int directionIndex = Random.Range(0, 4);
 
         switch (directionIndex)
         {
             case 0:
-                direction = Vector2.right;  // Move right
+                direction = Vector2.right;
                 break;
             case 1:
-                direction = Vector2.left;   // Move left
+                direction = Vector2.left;
                 break;
             case 2:
-                direction = Vector2.up;     // Move up
+                direction = Vector2.up;
                 break;
             case 3:
-                direction = Vector2.down;   // Move down
+                direction = Vector2.down;
                 break;
         }
     }
@@ -93,29 +123,38 @@ public class EnemyRoaming : MonoBehaviour
     {
         if (isPaused)
         {
-            // If currently paused, start moving
             isPaused = false;
-            stateTimer = Random.Range(minMoveTime, maxMoveTime);  // Random move duration
+            stateTimer = Random.Range(minMoveTime, maxMoveTime);
         }
         else
         {
-            // If currently moving, start pausing
             isPaused = true;
-            stateTimer = Random.Range(minPauseTime, maxPauseTime); // Random pause duration
-            
-            // Reset animation parameters to stop movement animation
+            stateTimer = Random.Range(minPauseTime, maxPauseTime);
+
             animator.SetFloat("Horizontal", 0);
             animator.SetFloat("Vertical", 0);
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+void OnCollisionEnter2D(Collision2D collision)
+{
+    // If the enemy collides with anything EXCEPT the "Player", choose a new direction
+    if (!collision.collider.CompareTag("Player"))
     {
-        // Check if the enemy collides with a wall or obstacle
-        if (collision.collider.CompareTag("Wall"))
-        {
-            // Choose a new direction if it hits a wall
-            ChooseNewDirection();
-        }
+        ChooseNewDirection();
+    }
+}
+
+
+    public void OnPlayerDetected(Transform player)
+    {
+        playerToChase = player;
+        isChasing = true;
+    }
+
+    public void OnPlayerLost()
+    {
+        playerToChase = null;
+        isChasing = false;
     }
 }

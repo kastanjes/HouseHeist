@@ -5,44 +5,38 @@ using UnityEngine;
 public class HideableObject : MonoBehaviour
 {
     public string hideSoundName; // Navnet på lyden, der skal afspilles
-    public float interactionRange = 2f; // Hvor langt spilleren kan være fra objektet for at interagere
+    private bool isPlayerInTrigger = false; // Holder styr på, om spilleren er i triggeren
 
-    private Transform player; // Reference til spilleren
-
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // Find spilleren (forudsat spilleren har tagget "Player")
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        if (playerObject != null)
+        if (other.CompareTag("Player"))
         {
-            player = playerObject.transform;
+            isPlayerInTrigger = true;
+            Debug.Log("Player entered hideable trigger");
         }
-        else
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
-            Debug.LogError("Spilleren blev ikke fundet! Sørg for, at spilleren har tagget 'Player'.");
+            isPlayerInTrigger = false;
+            Debug.Log("Player exited hideable trigger");
         }
     }
 
     void Update()
     {
-        if (player != null)
+        // Hvis spilleren er i triggeren og trykker på "E" eller "Space", kan de gemme sig
+        if (isPlayerInTrigger && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)))
         {
-            // Beregn afstanden mellem spilleren og objektet
-            float distanceToPlayer = Vector2.Distance(player.position, transform.position);
-
-            // Hvis spilleren er inden for rækkevidde og trykker på en knap, kan de gemme sig
-            if (distanceToPlayer <= interactionRange && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)))
-            {
-                Debug.Log($"Spilleren interagerer med: {gameObject.name}");
-                Hide();
-            }
+            Debug.Log("Player is hiding in: " + gameObject.name);
+            Hide();
         }
     }
 
-    public void Hide()
+    private void Hide()
     {
-        Debug.Log($"Hide() kaldt på {gameObject.name}");
-
         // Afspil lyden, hvis den er korrekt sat op
         if (!string.IsNullOrEmpty(hideSoundName) && AudioManager.instance != null)
         {
@@ -54,6 +48,6 @@ public class HideableObject : MonoBehaviour
             Debug.LogWarning($"Ingen lyd afspillet for {gameObject.name}. Enten mangler AudioManager, eller lydenavnet er forkert.");
         }
 
-        Debug.Log("Spilleren skjuler sig i " + gameObject.name);
+        Debug.Log("Player has successfully hidden in " + gameObject.name);
     }
 }

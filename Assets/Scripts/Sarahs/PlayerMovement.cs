@@ -10,6 +10,15 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 movement;
 
+    public Animator animator;
+
+
+
+    public void Start()
+    {
+
+    }
+
     void Update()
     {
         if (playerID == 1)
@@ -17,13 +26,20 @@ public class PlayerMovement : MonoBehaviour
             // Controls for Player 1 (e.g., WASD)
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+
+
         }
         else if (playerID == 2)
         {
             // Controls for Player 2 (e.g., Arrow Keys)
             movement.x = Input.GetAxisRaw("Horizontal2"); // Set up "Horizontal2" in Input Manager
             movement.y = Input.GetAxisRaw("Vertical2");   // Set up "Vertical2" in Input Manager
+
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
         }
+
+
     }
 
     void FixedUpdate()

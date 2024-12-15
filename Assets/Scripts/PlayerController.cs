@@ -149,6 +149,7 @@ public class PlayerController : MonoBehaviour
 
     void Interact()
     {
+        // Player is already hidden; unhide them
         if (playerGraphics.activeSelf == false)
         {
             playerGraphics.SetActive(true);
@@ -162,9 +163,11 @@ public class PlayerController : MonoBehaviour
         {
             Stealables closestStealable = FindStealables();
 
+            // Check if the player can hide in a nearby hideable
             HideableObject closestHideable = FindHideables();
-            if (closestHideable != null)
+            if (closestHideable != null && closestHideable.isPlayerInTrigger)
             {
+                // Hide the player
                 playerGraphics.SetActive(false);
                 canPlayerMove = false;
                 if (playerLight != null)
@@ -187,20 +190,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Skal vide hvornår pleyer gå ind i trigger og gå ud af trigger
+
+    //skal vide hvornår player trykker space eller e
+
     HideableObject FindHideables()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10);
         foreach (var item in colliders)
         {
             HideableObject hideable = item.gameObject.GetComponent<HideableObject>();
-            if (hideable != null)
+            if (hideable != null && hideable.isPlayerInTrigger)
             {
-                float distance = Vector2.Distance(transform.position, hideable.gameObject.transform.position);
-                if (distance < 1.1f)
-                {
-                    Debug.Log("Found hideable");
+                 // istedet for distance chekker jeg om booplean er true i hideableobjects - boolean og ontriggerenter og ontrigger exit
+                
+                    Debug.Log("Found hideable in trigger");
                     return hideable;
-                }
+                
             }
         }
         return null;
