@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 10
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -42,8 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 13
-  m_BakeOnSceneLoad: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,6 +66,9 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -291,11 +294,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1184051240}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 822685234}
     m_RemovedComponents: []
@@ -376,11 +379,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1561823422}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 880313637}
     m_RemovedComponents: []
@@ -504,17 +507,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -633,11 +634,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 587184865}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 558006886}
     m_RemovedComponents: []
@@ -713,9 +714,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -759,7 +757,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69327917}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -783,8 +780,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0.02, y: -0.36}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -795,6 +791,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 0.19, y: 0.25}
   m_EdgeRadius: 0
 --- !u!114 &69327921
@@ -872,7 +869,6 @@ GameObject:
   - component: {fileID: 155836017}
   - component: {fileID: 155836018}
   - component: {fileID: 155836019}
-  - component: {fileID: 155836020}
   m_Layer: 7
   m_Name: Player 1
   m_TagString: Player
@@ -918,7 +914,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &155836018
 Rigidbody2D:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -929,8 +925,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -951,7 +947,6 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155836013}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -975,62 +970,10 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &155836020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155836013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
-  m_LightType: 3
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
-  m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 3793d36d93d592c81fcb47d96d37b97de3879b4b8d194dd0afebc08a00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
-  m_UseNormalMap: 0
-  m_ShadowsEnabled: 1
-  m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0.3
-  m_ShadowSoftnessFalloffIntensity: 0.5
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1001 &158170443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1088,11 +1031,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 542921671}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1925660634}
     m_RemovedComponents: []
@@ -1375,11 +1318,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 886125622}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 560931536}
     m_RemovedComponents: []
@@ -1459,9 +1402,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1505,7 +1445,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327156145}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1529,8 +1468,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -1541,6 +1479,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &327156149
@@ -1682,7 +1621,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 386041060}
     m_RemovedComponents: []
@@ -1806,17 +1745,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1942,17 +1879,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -2020,7 +1955,6 @@ TilemapCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375304404}
   m_Enabled: 0
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2044,8 +1978,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -2067,9 +2000,6 @@ TilemapRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2335,11 +2265,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 687484949}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 342723144}
     m_RemovedComponents: []
@@ -2407,14 +2337,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
+  m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.531
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.11
   m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -2424,10 +2354,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowsEnabled: 0
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0
-  m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -2504,11 +2432,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1856280076}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 769282300}
     m_RemovedComponents: []
@@ -2584,9 +2512,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2630,7 +2555,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 445529710}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2654,8 +2578,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: -0.19, y: -0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -2666,6 +2589,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 0.43, y: 0.85}
   m_EdgeRadius: 0
 --- !u!114 &445529714
@@ -2733,9 +2657,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2792,7 +2713,6 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481370444}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2816,9 +2736,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: -0.00000023841858, y: 0}
+  serializedVersion: 2
   m_Radius: 0.3125
 --- !u!1 &495005656
 GameObject:
@@ -2832,7 +2752,6 @@ GameObject:
   - component: {fileID: 495005658}
   - component: {fileID: 495005657}
   - component: {fileID: 495005660}
-  - component: {fileID: 495005661}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2958,25 +2877,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &495005661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 495005656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6be91d5293a4f1b94c62d5b169c4bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerOne: {fileID: 155836015}
-  playerTwo: {fileID: 1467486965}
-  zoomSpeed: 5
-  minZoom: 4
-  maxZoom: 1.5
-  zoomLimiter: 5
-  smoothSpeed: 0.125
 --- !u!1001 &542921670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3034,11 +2934,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 2029875021}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 158170444}
     m_RemovedComponents: []
@@ -3119,11 +3019,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 59443765}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1636319066}
     m_RemovedComponents: []
@@ -3204,11 +3104,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 268866420}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1627984437}
     m_RemovedComponents: []
@@ -3400,11 +3300,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1548983096}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 59443765}
     m_RemovedComponents: []
@@ -3485,11 +3385,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 769282300}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1764575270}
     m_RemovedComponents: []
@@ -3639,9 +3539,6 @@ TilemapRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4886,7 +4783,6 @@ TilemapCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613450242}
   m_Enabled: 0
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -4910,8 +4806,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -4956,7 +4851,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628187777}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -4980,8 +4874,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: -0.1, y: -0.09}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -4992,6 +4885,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 1.01, y: 0.95}
   m_EdgeRadius: 0
 --- !u!1001 &687484948
@@ -5051,11 +4945,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1465450381}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 386041060}
     m_RemovedComponents: []
@@ -5123,14 +5017,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
+  m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.531
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.79
   m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -5140,10 +5034,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowsEnabled: 0
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0
-  m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -5220,7 +5112,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1300222578}
     m_RemovedComponents: []
@@ -5301,11 +5193,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 436509182}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 603162271}
     m_RemovedComponents: []
@@ -5535,17 +5427,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
@@ -5583,9 +5473,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5668,11 +5555,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 39225425}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1561823422}
     m_RemovedComponents: []
@@ -5745,9 +5632,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5921,7 +5805,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 39487793}
     m_RemovedComponents: []
@@ -6042,9 +5926,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6103,7 +5984,6 @@ PolygonCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882643433}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -6127,8 +6007,7 @@ PolygonCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -6202,7 +6081,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 268866420}
     m_RemovedComponents: []
@@ -6456,9 +6335,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6611,7 +6487,6 @@ TilemapCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973314033}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -6635,8 +6510,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -6658,9 +6532,6 @@ TilemapRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7283,14 +7154,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
+  m_ComponentVersion: 1
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.919
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.53
   m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -7300,10 +7171,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowsEnabled: 0
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0
-  m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -7417,11 +7286,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1636319066}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1702807140}
     m_RemovedComponents: []
@@ -7496,9 +7365,6 @@ TilemapRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8295,7 +8161,6 @@ TilemapCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069543818}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -8319,8 +8184,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -8382,11 +8246,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1300222578}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1184051240}
     m_RemovedComponents: []
@@ -8461,9 +8325,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8520,7 +8381,6 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103930276}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -8544,9 +8404,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
   m_Radius: 0.3125
 --- !u!1 &1137307960
 GameObject:
@@ -8592,14 +8452,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
+  m_ComponentVersion: 1
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.888
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.53
   m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -8609,10 +8469,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowsEnabled: 0
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0
-  m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -8857,11 +8715,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1101376256}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 39225425}
     m_RemovedComponents: []
@@ -9050,9 +8908,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9109,7 +8964,6 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270095920}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -9133,9 +8987,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0.00000011920929, y: 0}
+  serializedVersion: 2
   m_Radius: 0.3125
 --- !u!1 &1282952507
 GameObject:
@@ -9234,11 +9088,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 747438469}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1101376256}
     m_RemovedComponents: []
@@ -9362,17 +9216,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -9455,11 +9307,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1702807140}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1883811520}
     m_RemovedComponents: []
@@ -9599,9 +9451,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9688,9 +9537,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9747,7 +9593,6 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380893722}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -9771,9 +9616,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
   m_Radius: 0.3125
 --- !u!1 &1391053696
 GameObject:
@@ -9809,9 +9654,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9919,11 +9761,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1764575270}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 687484949}
     m_RemovedComponents: []
@@ -9959,7 +9801,6 @@ GameObject:
   - component: {fileID: 1467486967}
   - component: {fileID: 1467486968}
   - component: {fileID: 1467486969}
-  - component: {fileID: 1467486970}
   m_Layer: 7
   m_Name: Player 2
   m_TagString: Player
@@ -10005,7 +9846,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &1467486968
 Rigidbody2D:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10016,8 +9857,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -10038,7 +9879,6 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467486963}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -10062,62 +9902,10 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1467486970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467486963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
-  m_LightType: 3
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
-  m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 3793d36d93d592c81fcb47d96d37b97de3879b4b8d194dd0afebc08a00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
-  m_UseNormalMap: 0
-  m_ShadowsEnabled: 1
-  m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0.3
-  m_ShadowSoftnessFalloffIntensity: 0.5
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1001 &1548018364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10175,11 +9963,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1627984437}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 2029875021}
     m_RemovedComponents: []
@@ -10260,7 +10048,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 587184865}
     m_RemovedComponents: []
@@ -10341,11 +10129,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 822685234}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 39487793}
     m_RemovedComponents: []
@@ -10560,11 +10348,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 560931536}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1548018365}
     m_RemovedComponents: []
@@ -10685,11 +10473,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 558006886}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1048555827}
     m_RemovedComponents: []
@@ -10845,11 +10633,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1048555827}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1352278276}
     m_RemovedComponents: []
@@ -10946,7 +10734,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718531212}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -10970,8 +10757,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: -0.7, y: -0.09}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -10982,6 +10768,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 0.67, y: 1.07}
   m_EdgeRadius: 0
 --- !u!1001 &1764575269
@@ -11041,11 +10828,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 603162271}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 1465450381}
     m_RemovedComponents: []
@@ -11118,14 +10905,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
+  m_ComponentVersion: 1
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -11135,10 +10922,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowsEnabled: 0
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0
-  m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -11171,7 +10956,6 @@ GameObject:
   - component: {fileID: 1810756627}
   - component: {fileID: 1810756628}
   - component: {fileID: 1810756629}
-  - component: {fileID: 1810756630}
   m_Layer: 8
   m_Name: Grandma
   m_TagString: Untagged
@@ -11196,9 +10980,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11258,7 +11039,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810756624}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -11282,8 +11062,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -11294,6 +11073,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1810756628
@@ -11343,58 +11123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab9cbd3b086d7148a5d8ba8b1909fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1810756630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810756624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
-  m_LightType: 3
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 2
-  m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 3793d36d93d592c81fcb47d96d37b97de3879b4b8d194dd0afebc08a00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
-  m_UseNormalMap: 0
-  m_ShadowsEnabled: 1
-  m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0.3
-  m_ShadowSoftnessFalloffIntensity: 0.5
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &1842494221
 GameObject:
   m_ObjectHideFlags: 0
@@ -11439,14 +11167,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
+  m_ComponentVersion: 1
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
   m_Intensity: 0
   m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -11456,10 +11184,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowsEnabled: 0
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0
-  m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -11577,7 +11303,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 436509182}
     m_RemovedComponents: []
@@ -11643,7 +11369,6 @@ TilemapCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866123608}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -11667,8 +11392,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -11690,9 +11414,6 @@ TilemapRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12538,7 +12259,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1352278276}
     m_RemovedComponents: []
@@ -12766,7 +12487,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 158170444}
     m_RemovedComponents: []
@@ -12825,7 +12546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1989644316
@@ -12905,17 +12626,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -12985,14 +12704,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
+  m_ComponentVersion: 1
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.919
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.53
   m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -13002,10 +12721,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowsEnabled: 0
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0
-  m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -13082,11 +12799,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[0]'
+      propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 1548018365}
     - target: {fileID: 6523449999077454101, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
-      propertyPath: 'connections.Array.data[1]'
+      propertyPath: connections.Array.data[1]
       value: 
       objectReference: {fileID: 542921671}
     m_RemovedComponents: []
@@ -13210,17 +12927,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
@@ -13258,9 +12973,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13330,14 +13042,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
+  m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.531
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.79
   m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -13347,10 +13059,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowsEnabled: 0
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0
-  m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
