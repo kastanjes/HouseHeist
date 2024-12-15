@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class HideableObject : MonoBehaviour
 {
     public string hideSoundName; // Navnet på lyden, der skal afspilles
-    private bool isPlayerInTrigger = false; // Holder styr på, om spilleren er i triggeren
+    public bool isPlayerInTrigger = false; // Holder styr på, om spilleren er i triggeren
 
     private void OnTriggerEnter2D(Collider2D other)
     {
