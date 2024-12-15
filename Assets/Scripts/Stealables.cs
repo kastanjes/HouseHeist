@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Stealables : MonoBehaviour
 {
-    public float WeightInKg = 1.0f;
+    public float weightInKg = 1.0f; //Weight of the stealable
+    public float valueInUSD = 1.0f; //Dollar Value of the stealable. can be adjusted to 10.f
 
     void Start()
     {
@@ -20,13 +21,12 @@ public class Stealables : MonoBehaviour
     {
         Destroy(this.gameObject);
 
-        stolenByPlayer.TotalWeightInKg += WeightInKg;
+        stolenByPlayer.totalWeightInKg += weightInKg;
 
         int numberOfStealables = FindObjectsOfType<Stealables>().Length;
 
         UIController ui = FindObjectOfType<UIController>();
 
-        float progressIncrement = 1f / numberOfStealables;
-        ui.SetProgress(ui.GetProgress() + progressIncrement);
+        ui.AddUSD(valueInUSD);
     }
 }
