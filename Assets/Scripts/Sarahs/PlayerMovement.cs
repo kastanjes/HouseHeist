@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Speed", movement.sqrMagnitude); 
+
 
         }
         else if (playerID == 2)
