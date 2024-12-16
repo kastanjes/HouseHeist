@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 targetPosition;
 
+    public Animator animator;
+
+    private Vector2 movement;
+
     float CalculateAndGetSpeed()
     {
         return speed * 1 / totalWeightInKg; // more weight makes you slower
@@ -84,6 +88,9 @@ public class PlayerController : MonoBehaviour
             position.x = position.x + CalculateAndGetSpeed() * horizontal;
             position.y = position.y + CalculateAndGetSpeed() * vertical;
             targetPosition = position;
+
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
         }
 
         // Player pickup and interaction
@@ -129,6 +136,9 @@ public class PlayerController : MonoBehaviour
             position.x = position.x + CalculateAndGetSpeed() * horizontal;
             position.y = position.y + CalculateAndGetSpeed() * vertical;
             targetPosition = position;
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
         }
 
 
@@ -190,9 +200,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Skal vide hvornår pleyer gå ind i trigger og gå ud af trigger
+    //Skal vide hvornï¿½r pleyer gï¿½ ind i trigger og gï¿½ ud af trigger
 
-    //skal vide hvornår player trykker space eller e
+    //skal vide hvornï¿½r player trykker space eller e
 
     HideableObject FindHideables()
     {

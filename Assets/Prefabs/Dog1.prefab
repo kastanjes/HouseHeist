@@ -128,7 +128,7 @@ MonoBehaviour:
   maxPauseTime: 2
   minMoveTime: 2
   maxMoveTime: 4
-  stopDistance: 3
+  stopDistance: 3.5
   direction: {x: 0, y: 0}
 --- !u!70 &3930584657027487387
 CapsuleCollider2D:
