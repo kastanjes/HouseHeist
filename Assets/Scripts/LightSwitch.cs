@@ -9,7 +9,14 @@ public class LightSwitch : MonoBehaviour
 
     internal void Switch(bool enabled)
     {
+        // Tænd eller sluk lyset
         roomLight.SetActive(enabled);
+
+        // Afspil lyd, hvis lyset tændes
+        if (enabled && AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("Lightswitch on");
+        }
     }
 
     // Start is called before the first frame update

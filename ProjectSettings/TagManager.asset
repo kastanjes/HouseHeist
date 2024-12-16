@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - EnemyDog
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -11,11 +13,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Hideables
+  - Walls
+  - Props
+  - Dog
+  - EnemyFOVignore
   - Player
-  - Grandma
-  - 
-  - 
   - 
   - 
   - 
@@ -38,6 +40,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground outdoor
+    uniqueID: 1842582327
+    locked: 0
+  - name: Background
+    uniqueID: 3365066131
+    locked: 0
+  - name: Walls
+    uniqueID: 3645360927
+    locked: 0
+  - name: Props
+    uniqueID: 2109290349
+    locked: 0
+  - name: Hiding
+    uniqueID: 1268484067
+    locked: 0
+  - name: Collectables
+    uniqueID: 3494713741
+    locked: 0
+  - name: Player/Enemy
+    uniqueID: 2327899055
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

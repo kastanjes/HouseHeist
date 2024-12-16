@@ -636,6 +636,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3af2ce72b018c84eb12ebf7659a8c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideSoundName: 
+  isPlayerInTrigger: 0
 --- !u!1 &110675102
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +740,8 @@ MonoBehaviour:
   speed: 0.0043
   playerGraphics: {fileID: 1371986457}
   playerLight: {fileID: 2091743303}
-  TotalWeightInKg: 1
+  totalWeightInKg: 1
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &155836018
 Rigidbody2D:
   serializedVersion: 4
@@ -1155,6 +1158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3af2ce72b018c84eb12ebf7659a8c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideSoundName: 
+  isPlayerInTrigger: 0
 --- !u!1 &341012708
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,6 +2134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3af2ce72b018c84eb12ebf7659a8c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideSoundName: 
+  isPlayerInTrigger: 0
 --- !u!1 &481370444
 GameObject:
   m_ObjectHideFlags: 0
@@ -8819,7 +8826,8 @@ MonoBehaviour:
   speed: 0.0036
   playerGraphics: {fileID: 832772903}
   playerLight: {fileID: 707636820}
-  TotalWeightInKg: 1
+  totalWeightInKg: 1
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &1467486968
 Rigidbody2D:
   serializedVersion: 4
@@ -9962,15 +9970,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   speed: 0.8
+  Waittime: 1
+  GrandmaGraphics: {fileID: 0}
   LightSwitch_01: {fileID: 1270095920}
   LightSwitch_02: {fileID: 1380893722}
   LightSwitch_03: {fileID: 481370444}
   LightSwitch_04: {fileID: 1103930276}
+  EndStair: {fileID: 0}
   path: []
   lightSwitch01StartNode: {fileID: 1856280076}
   lightSwitch02StartNode: {fileID: 1548983096}
   lightSwitch03StartNode: {fileID: 886125622}
   lightSwitch04StartNode: {fileID: 747438469}
+  startNode: {fileID: 0}
   currentState: 1
 --- !u!114 &1810756629
 MonoBehaviour:
@@ -11191,6 +11203,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progress: {fileID: 1165724546}
   gameOverText: {fileID: 359194384}
+  progressBar: {fileID: 0}
+  progresText: {fileID: 0}
+  currentAmountUSDCollected: 0
+  PlayerOne: {fileID: 0}
+  PlayerTwo: {fileID: 0}
+  WeightPlayerOne: {fileID: 0}
+  WeightPlayerTwo: {fileID: 0}
+  progresTextWeightPlayerOne: {fileID: 0}
+  progresTextWeightPlayerTwo: {fileID: 0}
 --- !u!1001 &1925660632
 PrefabInstance:
   m_ObjectHideFlags: 0

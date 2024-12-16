@@ -8,7 +8,7 @@ using UnityEngine.Tilemaps;
 public class Node : MonoBehaviour
 {
     public Node cameFrom;
-    public List<Node> connections;
+    public List<Node> connections = new List<Node>(); // Ensure its initialized
 
     public float gScore;
     public float hScore;
@@ -25,7 +25,11 @@ public class Node : MonoBehaviour
             Gizmos.color = Color.blue;
             for (int i = 0; i < connections.Count; i++)
             {
-                Gizmos.DrawLine(transform.position, connections[i].transform.position);
+                if (connections[i] != null) // ensure the connection is not null
+                {
+                    Gizmos.DrawLine(transform.position, connections[i].transform.position);
+                }
+                
             }
         }
     }

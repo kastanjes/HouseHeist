@@ -34,7 +34,7 @@ public class RandomWalkerGenerator : MonoBehaviour
     public List<Node> nodeList;
 
 
-    private bool canDrawGizmos;
+    // private bool canDrawGizmos;
 
     private void Awake()
     {
@@ -229,7 +229,7 @@ public class RandomWalkerGenerator : MonoBehaviour
                 }
             }
         }
-        canDrawGizmos = true;
+       // canDrawGizmos = true;
         SpawnAI();
     }
 

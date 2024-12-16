@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393d123b8f38e8c42aaa48599c32bf05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeightInKg: 1
+  weightInKg: 0.3
+  valueInUSD: 40
 --- !u!61 &428885119800759670
 BoxCollider2D:
   m_ObjectHideFlags: 0
