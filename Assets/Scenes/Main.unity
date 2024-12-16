@@ -3206,7 +3206,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Closet Door
     clip: {fileID: 8300000, guid: b5f6444ace0c94a8eb704422da39bc0c, type: 3}
-    volume: 0.51
+    volume: 0.762
     pitch: 1
     loop: 0
     source: {fileID: 0}
