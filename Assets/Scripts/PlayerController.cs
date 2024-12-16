@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,7 +26,6 @@ public class PlayerController : MonoBehaviour
         return speed * 1 / totalWeightInKg; // more weight makes you slower
     }
 
-
     void Start()
     {
         targetPosition = transform.position;
@@ -48,7 +43,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     void UpdatePlayerOne()
     {
         if (canPlayerMove)
@@ -58,27 +52,21 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.A))
             {
                 horizontal = -1.0f;
-                transform.rotation = Quaternion.Euler(0, 0, 90);
             }
             else if (Input.GetKey(KeyCode.D))
             {
                 horizontal = 1.0f;
-                transform.rotation = Quaternion.Euler(0, 0, -90);
             }
-
 
             float vertical = 0.0f;
             if (Input.GetKey(KeyCode.W))
             {
                 vertical = 1.0f;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else if (Input.GetKey(KeyCode.S))
             {
                 vertical = -1.0f;
-                transform.rotation = Quaternion.Euler(0, 0, 180);
             }
-
 
             Vector2 position = transform.position;
             position.x = position.x + CalculateAndGetSpeed() * horizontal;
@@ -95,7 +83,6 @@ public class PlayerController : MonoBehaviour
 
     void UpdatePlayerTwo()
     {
-
         if (canPlayerMove)
         {
             // Move player
@@ -103,35 +90,27 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 horizontal = -1.0f;
-                transform.rotation = Quaternion.Euler(0, 0, 90);
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
                 horizontal = 1.0f;
-                transform.rotation = Quaternion.Euler(0, 0, -90);
             }
-
 
             float vertical = 0.0f;
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 vertical = 1.0f;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else if (Input.GetKey(KeyCode.DownArrow))
             {
                 vertical = -1.0f;
-                transform.rotation = Quaternion.Euler(0, 0, 180);
             }
-
 
             Vector2 position = transform.position;
             position.x = position.x + CalculateAndGetSpeed() * horizontal;
             position.y = position.y + CalculateAndGetSpeed() * vertical;
             targetPosition = position;
         }
-
-
 
         // Player pickup and interaction
         if (Input.GetKeyDown(KeyCode.Space))
@@ -140,12 +119,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     void FixedUpdate()
     {
-        transform.position = targetPosition;   
-    }
+        // Ensure the position updates correctly
+        transform.position = targetPosition;
 
+        // Lock rotation to default
+        transform.rotation = Quaternion.identity;
+    }
 
     void Interact()
     {
@@ -154,8 +135,8 @@ public class PlayerController : MonoBehaviour
         {
             playerGraphics.SetActive(true);
             canPlayerMove = true;
-            if (playerLight != null) 
-            { 
+            if (playerLight != null)
+            {
                 playerLight.SetActive(true);
             }
         }
@@ -174,25 +155,22 @@ public class PlayerController : MonoBehaviour
                 {
                     playerLight.SetActive(false);
                 }
-            } else if (closestStealable != null)
+            }
+            else if (closestStealable != null)
             {
                 closestStealable.Steal(this);
             }
 
-            if (playerNumber == PlayerNumber.PlayerTwo) 
+            if (playerNumber == PlayerNumber.PlayerTwo)
             {
                 Unlockables closestUnlockable = FindUnlockables();
-                if (closestUnlockable != null) 
+                if (closestUnlockable != null)
                 {
                     closestUnlockable.Unlock();
                 }
             }
         }
     }
-
-    //Skal vide hvornår pleyer gå ind i trigger og gå ud af trigger
-
-    //skal vide hvornår player trykker space eller e
 
     HideableObject FindHideables()
     {
@@ -202,11 +180,8 @@ public class PlayerController : MonoBehaviour
             HideableObject hideable = item.gameObject.GetComponent<HideableObject>();
             if (hideable != null && hideable.isPlayerInTrigger)
             {
-                 // istedet for distance chekker jeg om booplean er true i hideableobjects - boolean og ontriggerenter og ontrigger exit
-                
-                    Debug.Log("Found hideable in trigger");
-                    return hideable;
-                
+                Debug.Log("Found hideable in trigger");
+                return hideable;
             }
         }
         return null;
@@ -242,7 +217,7 @@ public class PlayerController : MonoBehaviour
                 float distance = Vector2.Distance(transform.position, unlockable.gameObject.transform.position);
                 if (distance < 1.1f)
                 {
-                    Debug.Log("Found stealable");
+                    Debug.Log("Found unlockable");
                     return unlockable;
                 }
             }
@@ -250,9 +225,7 @@ public class PlayerController : MonoBehaviour
         return null;
     }
 
-
-
-    public void KillPlayer() 
+    public void KillPlayer()
     {
         canPlayerMove = false;
 
