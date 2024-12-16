@@ -5,7 +5,6 @@ public class UIController : MonoBehaviour
 {
     public UnityEngine.UI.Slider progress;
     public GameObject gameOverText;
-    public Slider progressBar; //reference to the UI slider
     public TMPro.TextMeshProUGUI progresText; //reference to the text showing progress
 
 
