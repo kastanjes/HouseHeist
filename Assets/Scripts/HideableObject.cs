@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System; // Tilføj denne using statement øverst, da vi bruger Array.Find()
 
 public class HideableObject : MonoBehaviour
 {
@@ -38,11 +38,20 @@ public class HideableObject : MonoBehaviour
 
     private void Hide()
     {
-        // Afspil lyden, hvis den er korrekt sat op
+        // Tjek om lyden eksisterer, før den afspilles
         if (!string.IsNullOrEmpty(hideSoundName) && AudioManager.instance != null)
         {
-            Debug.Log($"Afspiller lyd: {hideSoundName}");
-            AudioManager.instance.Play(hideSoundName);
+            Sound soundToPlay = Array.Find(AudioManager.instance.sounds, sound => sound.name == hideSoundName);
+            
+            if (soundToPlay != null)
+            {
+                Debug.Log($"Afspiller lyd: {hideSoundName}");
+                AudioManager.instance.Play(hideSoundName);
+            }
+            else
+            {
+                Debug.LogWarning($"Kunne ikke finde lyden {hideSoundName} i AudioManager");
+            }
         }
         else
         {
