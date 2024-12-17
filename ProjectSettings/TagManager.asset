@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EnemyDog
   - Wall
+  - Collectables
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Dog
   - EnemyFOVignore
   - Player
-  - 
+  - Lights
   - 
   - 
   - 
@@ -52,15 +53,24 @@ TagManager:
   - name: Props
     uniqueID: 2109290349
     locked: 0
-  - name: Hiding
-    uniqueID: 1268484067
-    locked: 0
   - name: Collectables
     uniqueID: 3494713741
     locked: 0
   - name: Player/Enemy
     uniqueID: 2327899055
     locked: 0
+  - name: Hiding
+    uniqueID: 1268484067
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BehindHiding
+    uniqueID: 4169702545
+    locked: 0
+  - name: Text
+    uniqueID: 3896302777
+    locked: 0
+  - name: UI
+    uniqueID: 1346446303
     locked: 0

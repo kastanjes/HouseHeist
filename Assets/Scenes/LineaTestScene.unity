@@ -1906,6 +1906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3af2ce72b018c84eb12ebf7659a8c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideSoundName: 
   isPlayerInTrigger: 0
 --- !u!61 &362870406
 BoxCollider2D:
@@ -2342,11 +2343,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1521441545336769620, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.84
+      value: -15.87
       objectReference: {fileID: 0}
     - target: {fileID: 1521441545336769620, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.86
+      value: -8.91
       objectReference: {fileID: 0}
     - target: {fileID: 1521441545336769620, guid: 18a0f7ad35913d548abd50fc6de874e1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2607,7 +2608,7 @@ Transform:
   m_GameObject: {fileID: 445529710}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 6.26, y: 2.32, z: 0}
+  m_LocalPosition: {x: 5.93, y: 2.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5045,6 +5046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3af2ce72b018c84eb12ebf7659a8c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideSoundName: 
   isPlayerInTrigger: 0
 --- !u!1 &662004032
 GameObject:
@@ -11591,6 +11593,117 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576247267}
   m_CullTransparentMesh: 1
+--- !u!1 &1580511973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1580511975}
+  - component: {fileID: 1580511974}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1580511974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580511973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca834b5dee23546dfaa741f6fb05b3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: b38ff2bbf901545978a5523d47ce0fa7, type: 3}
+    volume: 0.333
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Knirkable
+    clip: {fileID: 8300000, guid: 5dd87f3c575504eebaf20edd0e5dce89, type: 3}
+    volume: 0.333
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Unlockable
+    clip: {fileID: 8300000, guid: 97116464075864cfb8bc8db55a12b0ef, type: 3}
+    volume: 0.333
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Lightswitch on
+    clip: {fileID: 8300000, guid: 001610ffc2fc7472f87eee9b29c67dbe, type: 3}
+    volume: 0.23
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Lightswitch off
+    clip: {fileID: 8300000, guid: 8d00150433124427986b5a1808af5a3a, type: 3}
+    volume: 0.333
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Plant Rattle
+    clip: {fileID: 8300000, guid: f55ba60d22389404c934f8ea27d0f8d0, type: 3}
+    volume: 0.333
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Floor Thump
+    clip: {fileID: 8300000, guid: 63daf80fc6e9d42ecad3616ca71d1de2, type: 3}
+    volume: 0.333
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Closet Door
+    clip: {fileID: 8300000, guid: b5f6444ace0c94a8eb704422da39bc0c, type: 3}
+    volume: 0.51
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Footsteps
+    clip: {fileID: 8300000, guid: 684aa9e4dd4e14e28a3538e7fbe62e23, type: 3}
+    volume: 0.333
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dog Growl
+    clip: {fileID: 8300000, guid: 695e590a0f4814cbea7ec38227bfaa7c, type: 3}
+    volume: 0.333
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dog Bark
+    clip: {fileID: 8300000, guid: bf358b04fc07c436a8c63ecff52ae984, type: 3}
+    volume: 0.333
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &1580511975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580511973}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1604368616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12263,6 +12376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3af2ce72b018c84eb12ebf7659a8c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideSoundName: 
   isPlayerInTrigger: 0
 --- !u!1001 &1736568875
 PrefabInstance:
@@ -15173,3 +15287,4 @@ SceneRoots:
   - {fileID: 341012711}
   - {fileID: 1022880463}
   - {fileID: 1714734121}
+  - {fileID: 1580511975}

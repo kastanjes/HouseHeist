@@ -19,6 +19,8 @@ public class Unlockables : MonoBehaviour
 
     public void Unlock() 
     {
+        AudioManager.instance.Play("Unlockable");
+
         Destroy(this.gameObject);
     }
 }

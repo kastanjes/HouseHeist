@@ -112,4 +112,12 @@ public class CameraControl : MonoBehaviour
         // Set the camera's orthographic size to fit all targets.
         m_Camera.orthographicSize = FindRequiredSize();
     }
+
+    public void SetTarget(Transform newTarget)
+{
+    // Replace current targets with the van's transform
+    m_Targets = new Transform[] { newTarget };
+    SetStartPositionAndSize();
+}
+
 }

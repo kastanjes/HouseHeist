@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2446537137305590934}
   - component: {fileID: 8810955991399664464}
-  - component: {fileID: 1293220596047564227}
+  - component: {fileID: 5190225249353317534}
   m_Layer: 3
   m_Name: Gold coins
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536889197515450851}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.3, y: -3.1100001, z: 0.0475}
   m_LocalScale: {x: 0.494263, y: 0.53643584, z: 0.6419}
   m_ConstrainProportionsScale: 0
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -800253555
-  m_SortingLayer: -2
+  m_SortingLayerID: -398664519
+  m_SortingLayer: 1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: cd863f6affaa1494894118026da6309e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1293220596047564227
+--- !u!114 &5190225249353317534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 536889197515450851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 393d123b8f38e8c42aaa48599c32bf05, type: 3}
+  m_Script: {fileID: 11500000, guid: 24a2652e2ccb2704bb5d58fa79ed4d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeightInKg: 1
+  value: 10
+  floatingTextPrefab: {fileID: 0}
+  textOffset: {x: -4.1, y: 0, z: 0}

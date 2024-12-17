@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class HideableObject : MonoBehaviour
 {
-    public bool isPlayerInTrigger = false;
+    public string hideSoundName; // Navnet på lyden, der skal afspilles
+    public bool isPlayerInTrigger = false; // Holder styr på, om spilleren er i triggeren
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,16 +25,30 @@ public class HideableObject : MonoBehaviour
             Debug.Log("Player exited hideable trigger");
         }
     }
-    // en bool chekker true or false, og jeg vil gerne tjekke om player er inde i triggeren eller ej, hvilket vil sige om hideable object trigger er til eller ej
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Hvis spilleren er i triggeren og trykker på "E" eller "Space", kan de gemme sig
+        if (isPlayerInTrigger && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)))
+        {
+            Debug.Log("Player is hiding in: " + gameObject.name);
+            Hide();
+        }
+    }
+
+    private void Hide()
+    {
+        // Afspil lyden, hvis den er korrekt sat op
+        if (!string.IsNullOrEmpty(hideSoundName) && AudioManager.instance != null)
+        {
+            Debug.Log($"Afspiller lyd: {hideSoundName}");
+            AudioManager.instance.Play(hideSoundName);
+        }
+        else
+        {
+            Debug.LogWarning($"Ingen lyd afspillet for {gameObject.name}. Enten mangler AudioManager, eller lydenavnet er forkert.");
+        }
+
+        Debug.Log("Player has successfully hidden in " + gameObject.name);
     }
 }

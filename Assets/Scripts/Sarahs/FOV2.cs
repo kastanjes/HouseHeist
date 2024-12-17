@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,18 +5,18 @@ using UnityEngine;
 public class EnemyVisionCone : MonoBehaviour
 {
     [Header("Vision Settings")]
-    public float viewRadius = 5f;  // How far the enemy can see
-    public float viewAngle = 90f;  // Angle of the vision cone
-    public int rayCount = 50;      // Number of rays in the vision cone
-    public LayerMask obstacleMask; // Mask for obstacles blocking vision
-    public LayerMask playerMask;   // Mask for detecting players
-    public LayerMask ignoreMask;   // Mask to exclude the enemy's own collider
-    public EnemyRoaming enemyRoaming; // Reference to the enemy's roaming behavior
+    public float viewRadius = 5f;                  // How far the enemy can see
+    public float viewAngle = 90f;                  // Angle of the vision cone
+    public int rayCount = 50;                      // Number of rays in the vision cone
+    public LayerMask obstacleMask;                 // Mask for obstacles blocking vision
+    public LayerMask playerMask;                   // Mask for detecting players
+    public LayerMask ignoreMask;                   // Mask to exclude the enemy's own collider
+    public EnemyRoaming enemyRoaming;              // Reference to the enemy's roaming behavior
 
-    private Mesh visionMesh;       // Mesh for the vision cone
+    private Mesh visionMesh;                       // Mesh for the vision cone
     private MeshRenderer meshRenderer;
 
-    private Transform detectedPlayer; // Reference to the currently detected player
+    private Transform detectedPlayer;              // Reference to the currently detected player
 
     void Start()
     {
@@ -33,7 +32,7 @@ public class EnemyVisionCone : MonoBehaviour
 
     void Update()
     {
-        AlignToEnemyDirection(); // Ensure the vision cone faces the enemy's movement direction
+        AlignToEnemyDirection(); // Dynamically align to the enemy's current direction
         DrawVisionCone();        // Dynamically draw the vision cone
         DetectPlayer();          // Check for players within the vision cone
     }
@@ -44,15 +43,12 @@ public class EnemyVisionCone : MonoBehaviour
 
         Vector2 direction = enemyRoaming.direction;
 
-        // Rotate the GameObject itself based on movement direction
-        if (direction == Vector2.right)
-            transform.rotation = Quaternion.Euler(0, 0, 0); // Facing right
-        else if (direction == Vector2.left)
-            transform.rotation = Quaternion.Euler(0, 0, 180); // Facing left
-        else if (direction == Vector2.up)
-            transform.rotation = Quaternion.Euler(0, 0, 90); // Facing up
-        else if (direction == Vector2.down)
-            transform.rotation = Quaternion.Euler(0, 0, -90); // Facing down
+        // Rotate the GameObject to match the enemy's direction
+        if (direction != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 
     void DrawVisionCone()
@@ -122,20 +118,19 @@ public class EnemyVisionCone : MonoBehaviour
         }
     }
 
-Vector3 CastRay(Vector3 origin, Vector3 direction)
-{
-    // Combine obstacle and player masks, then exclude ignoreMask (e.g., enemy's own layer)
-    LayerMask combinedMask = (obstacleMask | playerMask) & ~ignoreMask;
-
-    // Perform the raycast
-    RaycastHit2D hit = Physics2D.Raycast(origin, direction, viewRadius, combinedMask);
-    if (hit.collider != null)
+    Vector3 CastRay(Vector3 origin, Vector3 direction)
     {
-        return hit.point; // Return hit point if any collider is detected
-    }
-    return origin + direction * viewRadius; // Return full range if no collider is hit
-}
+        // Combine obstacle and player masks, then exclude ignoreMask (e.g., enemy's own layer)
+        LayerMask combinedMask = (obstacleMask | playerMask) & ~ignoreMask;
 
+        // Perform the raycast
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, viewRadius, combinedMask);
+        if (hit.collider != null)
+        {
+            return hit.point; // Return hit point if any collider is detected
+        }
+        return origin + direction * viewRadius; // Return full range if no collider is hit
+    }
 
     Vector3 DirectionFromAngle(float angle, bool isGlobal)
     {
