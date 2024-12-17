@@ -7,12 +7,14 @@ public class HideableObject : MonoBehaviour
 {
     public string hideSoundName; // Navnet på lyden, der skal afspilles
     public bool isPlayerInTrigger = false; // Holder styr på, om spilleren er i triggeren
+    public List<int> playerInstanceIds = new List<int>();
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             isPlayerInTrigger = true;
+            playerInstanceIds.Add(other.gameObject.GetInstanceID());
             Debug.Log("Player entered hideable trigger");
         }
     }
@@ -22,6 +24,7 @@ public class HideableObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInTrigger = false;
+            playerInstanceIds.Remove(other.gameObject.GetInstanceID());
             Debug.Log("Player exited hideable trigger");
         }
     }

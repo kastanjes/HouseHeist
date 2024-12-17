@@ -20,16 +20,18 @@ public class PlayerController : MonoBehaviour
     public GameObject playerLight;
 
     bool canPlayerMove = true;
+    bool isHidden = false;
 
     public float totalWeightInKg = 1.0f;
 
     public Vector3 targetPosition;
 
+    
+
     float CalculateAndGetSpeed()
     {
         return speed * 1 / totalWeightInKg; // more weight makes you slower
     }
-
 
     void Start()
     {
@@ -154,6 +156,7 @@ public class PlayerController : MonoBehaviour
         {
             playerGraphics.SetActive(true);
             canPlayerMove = true;
+            isHidden = false;
             if (playerLight != null) 
             { 
                 playerLight.SetActive(true);
@@ -170,6 +173,7 @@ public class PlayerController : MonoBehaviour
                 // Hide the player
                 playerGraphics.SetActive(false);
                 canPlayerMove = false;
+                isHidden = true;
                 if (playerLight != null)
                 {
                     playerLight.SetActive(false);
@@ -200,10 +204,10 @@ public class PlayerController : MonoBehaviour
         foreach (var item in colliders)
         {
             HideableObject hideable = item.gameObject.GetComponent<HideableObject>();
-            if (hideable != null && hideable.isPlayerInTrigger)
+            if (hideable != null && hideable.isPlayerInTrigger && hideable.playerInstanceIds.Contains(gameObject.GetInstanceID()))
             {
                  // istedet for distance chekker jeg om booplean er true i hideableobjects - boolean og ontriggerenter og ontrigger exit
-                
+
                     Debug.Log("Found hideable in trigger");
                     return hideable;
                 
@@ -254,6 +258,10 @@ public class PlayerController : MonoBehaviour
 
     public void KillPlayer() 
     {
+        if (isHidden)
+        {
+            return;
+        } 
         canPlayerMove = false;
 
         UIController ui = FindObjectOfType<UIController>();

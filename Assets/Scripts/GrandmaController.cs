@@ -18,6 +18,7 @@ public class GrandmaController : MonoBehaviour
     public float Waittime = 1f;
 
     public GameObject GrandmaGraphics;
+    public GameObject DetectionGameObject;
 
     [Header("Path Settings")]
     public GameObject LightSwitch_01;
@@ -65,25 +66,28 @@ public class GrandmaController : MonoBehaviour
         Debug.Log("Grandma starting at node: " + startNode.name);
 
         GrandmaGraphics.SetActive(false);
+        DetectionGameObject.SetActive(false);
     }
 
     void DetectPlayersInCone()
     {
+        UnityEngine.Transform detectionTransform = DetectionGameObject.transform;
+
         // Find all players within the detection radius
-        Collider2D[] playersInRange = Physics2D.OverlapCircleAll(transform.position, detectionRadius, playerLayer);
+        Collider2D[] playersInRange = Physics2D.OverlapCircleAll(detectionTransform.position, detectionRadius, playerLayer);
 
         foreach (Collider2D player in playersInRange)
         {
-            Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
-            float angleToPlayer = Vector2.Angle(transform.right, directionToPlayer);
+            Vector2 directionToPlayer = (player.transform.position - detectionTransform.position).normalized;
+            float angleToPlayer = Vector2.Angle(detectionTransform.right, directionToPlayer);
 
             // Check if the player is within the cone angle
             if (angleToPlayer < detectionAngle)
             {
-                float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+                float distanceToPlayer = Vector2.Distance(detectionTransform.position, player.transform.position);
 
                 // Use a Raycast to check for obstacles between the enemy and the player
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, detectionRadius, obstacleLayer | playerLayer);
+                RaycastHit2D hit = Physics2D.Raycast(detectionTransform.position, directionToPlayer, detectionRadius, obstacleLayer | playerLayer);
 
                 // If the ray hits the player directly (no walls in between), detect the player
                 if (hit && hit.collider.gameObject == player.gameObject)
@@ -104,14 +108,14 @@ public class GrandmaController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        Gizmos.DrawWireSphere(DetectionGameObject.transform.position, detectionRadius);
 
-        Vector3 leftBoundary = Quaternion.Euler(0, 0, detectionAngle) * transform.right;
-        Vector3 rightBoundary = Quaternion.Euler(0, 0, -detectionAngle) * transform.right;
+        Vector3 leftBoundary = Quaternion.Euler(0, 0, detectionAngle) * DetectionGameObject.transform.right;
+        Vector3 rightBoundary = Quaternion.Euler(0, 0, -detectionAngle) * DetectionGameObject.transform.right;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + leftBoundary * detectionRadius);
-        Gizmos.DrawLine(transform.position, transform.position + rightBoundary * detectionRadius);
+        Gizmos.DrawLine(DetectionGameObject.transform.position, DetectionGameObject.transform.position + leftBoundary * detectionRadius);
+        Gizmos.DrawLine(DetectionGameObject.transform.position, DetectionGameObject.transform.position + rightBoundary * detectionRadius);
     }
 
 
@@ -160,9 +164,11 @@ public class GrandmaController : MonoBehaviour
                     if (MoveToGameObject(startNode, EndStair))
                     {
                         GrandmaGraphics.SetActive(false);
+                        DetectionGameObject.SetActive(false);
                         Debug.Log("Returned to Start Position.");
                         path.Clear(); // Clear the path
                         currentState = StateMachine.None; // Reset the state machine
+                        TurnOffAllLightsSwitches();
                     }
                     break;
 
@@ -256,6 +262,10 @@ public class GrandmaController : MonoBehaviour
             // Move towards the next node
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            DetectionGameObject.transform.rotation = Quaternion.RotateTowards(DetectionGameObject.transform.rotation, Quaternion.Euler(0, 0, angle), 30.0f);
+
+
             // Check if Grandma has reached the current node
             if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
             {
@@ -282,7 +292,31 @@ public class GrandmaController : MonoBehaviour
 
         currentState = StateMachine.WalkToLight01;
         GrandmaGraphics.SetActive(true);
+        DetectionGameObject.SetActive(true);
+    }
 
+    void TurnOffAllLightsSwitches()
+    {
+        LightSwitch light1 = LightSwitch_01.GetComponent<LightSwitch>();
+        if (light1 != null)
+        {
+            light1.Switch(false);
+        }
+        LightSwitch light2 = LightSwitch_02.GetComponent<LightSwitch>();
+        if (light2 != null)
+        {
+            light2.Switch(false);
+        }
+        LightSwitch light3 = LightSwitch_03.GetComponent<LightSwitch>();
+        if (light3 != null)
+        {
+            light3.Switch(false);
+        }
+        LightSwitch light4 = LightSwitch_04.GetComponent<LightSwitch>();
+        if (light4 != null)
+        {
+            light4.Switch(false);
+        }
     }
 }
 
