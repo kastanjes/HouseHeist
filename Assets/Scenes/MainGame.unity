@@ -10344,7 +10344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3af2ce72b018c84eb12ebf7659a8c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideSoundName: 
+  hideSoundName: Plant Rattle
   isPlayerInTrigger: 0
 --- !u!61 &1014763515
 BoxCollider2D:
@@ -10934,7 +10934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3af2ce72b018c84eb12ebf7659a8c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideSoundName: 
+  hideSoundName: Closet Door
   isPlayerInTrigger: 0
 --- !u!61 &1065042872
 BoxCollider2D:
@@ -13480,7 +13480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3af2ce72b018c84eb12ebf7659a8c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideSoundName: 
+  hideSoundName: Floor Thump
   isPlayerInTrigger: 0
 --- !u!61 &1287731615
 BoxCollider2D:
