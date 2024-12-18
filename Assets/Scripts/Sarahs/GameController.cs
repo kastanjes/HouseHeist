@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class GameController : MonoBehaviour
 {
@@ -198,13 +200,13 @@ IEnumerator HandleWinSequence(int totalScore)
         if (playerID == 2) hideCountdownCoroutine2 = null;
     }
 
-    void RestartLevel()
+    public void RestartLevel()
     {
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    void LoadMenu()
+    public void LoadMenu()
     {
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");

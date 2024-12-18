@@ -168,17 +168,36 @@ public class EnemyRoaming : MonoBehaviour
         playerToChase = null;
         ChooseNewDirection();
         SetNextState();
+
+        Debug.Log("Chase stopped, attempting to stop Bark sound.");
+        AudioManager.Instance.StopBarkSound(); // Stop the looping bark sound
+
     }
-  public void OnPlayerDetected(Transform player)
+
+public void OnPlayerDetected(Transform player)
 {
+    if (player == null)
+    {
+        Debug.LogWarning("OnPlayerDetected: Player Transform is null!");
+        return;
+    }
+
     PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
     if (playerMovement != null && !playerMovement.isHiding)
     {
         isChasing = true;
         playerToChase = player;
         playerMovement.OnPlayerDetected();
+
+        Debug.Log("Player detected, starting chase...");
+        AudioManager.Instance.PlayBarkSound();
+    }
+    else
+    {
+        Debug.LogWarning("OnPlayerDetected: PlayerMovement not found or player is hiding.");
     }
 }
+
 
 public void OnPlayerLost()
 {

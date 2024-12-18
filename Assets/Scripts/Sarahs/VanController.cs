@@ -100,7 +100,11 @@ public class VanController : MonoBehaviour
             }
 
             StartCoroutine(DriveVanAway());
-        }
+            
+            AudioManager.Instance.StopBackgroundMusic();
+            AudioManager.Instance.PlayCarDrivingSound();
+            AudioManager.Instance.PlayVictorySound();
+            
     }
 IEnumerator DriveVanAway()
 {
@@ -120,14 +124,17 @@ IEnumerator DriveVanAway()
     // Trigger the win sequence with the correct total score
     GameController.Instance.TriggerWinSequence(totalScore);
 
-    // Move the van after triggering the win
+    // Play the van animation for exactly 4 seconds
     float elapsedTime = 0f;
-    while (elapsedTime < driveTime)
+    while (elapsedTime < 4f) // Ensure it runs for 4 seconds
     {
         vanTransform.Translate(Vector3.right * driveSpeed * Time.deltaTime);
         elapsedTime += Time.deltaTime;
         yield return null;
     }
+
+    // Stop the Victory Sound after 4 seconds
+    AudioManager.Instance.StopVictorySound();
 
     // Destroy players AFTER calculating the score
     foreach (GameObject player in players)
@@ -138,5 +145,5 @@ IEnumerator DriveVanAway()
 
 
 
-
+    }
 }

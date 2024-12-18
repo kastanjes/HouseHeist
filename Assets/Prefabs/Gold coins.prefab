@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2446537137305590934}
   - component: {fileID: 8810955991399664464}
-  - component: {fileID: 5190225249353317534}
+  - component: {fileID: 883464795529155612}
   m_Layer: 3
   m_Name: Gold coins
   m_TagString: Untagged
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -398664519
-  m_SortingLayer: 1
+  m_SortingLayerID: -800253555
+  m_SortingLayer: -3
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: cd863f6affaa1494894118026da6309e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5190225249353317534
+--- !u!114 &883464795529155612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,5 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 10
+  weight: 5
   floatingTextPrefab: {fileID: 0}
-  textOffset: {x: -4.1, y: 0, z: 0}
+  textOffset: {x: -4.6, y: 0.4, z: 0}
