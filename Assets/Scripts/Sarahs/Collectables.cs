@@ -65,30 +65,20 @@ public class Collectable : MonoBehaviour
         }
     }
 
-    void Collect(PlayerMovement player)
+void Collect(PlayerMovement player)
+{
+    if (player != null)
     {
-        if (player != null)
-        {
-            player.AddToScore(value);
-            player.AddWeight(weight);
-        }
-
-        // Play a specific sound based on the tag of the collectable
-        switch (tag)
-        {
-            case "Money":
-                AudioManager.Instance.PlayHidingSound(AudioManager.Instance.plantHideClip); // Replace with the Money sound
-                break;
-            case "Bigger":
-                AudioManager.Instance.PlayHidingSound(AudioManager.Instance.closetHideClip); // Replace with the Bigger sound
-                break;
-            default:
-                Debug.LogWarning($"No sound assigned for tag: {tag}");
-                break;
-        }
-
-        Destroy(floatingTextInstance);
-        Destroy(gameObject);
+        player.AddToScore(value);
+        player.AddWeight(weight);
     }
+
+    // Play the generic collectable pickup sound
+    AudioManager.Instance.PlayCollectablePickupSound(AudioManager.Instance.collectablePickupClip);
+
+    Destroy(floatingTextInstance);
+    Destroy(gameObject);
+}
+
 
 }

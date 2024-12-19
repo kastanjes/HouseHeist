@@ -45,8 +45,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip collectablePickupClip;
     public float collectablePickupVolume = 1f;
     private AudioSource collectablePickupSource;
-    public AudioClip moneyPickupClip;
-public AudioClip biggerPickupClip;
+  
+
 
 
     public AudioClip grandmaScreamClip; // NEW
