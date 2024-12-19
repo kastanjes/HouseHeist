@@ -176,9 +176,10 @@ public class EnemyRoaming : MonoBehaviour
 
 public void OnPlayerDetected(Transform player)
 {
-    if (player == null)
+    // Exit early if the game is over
+    if (GameController.Instance != null && GameController.Instance.isGameOver)
     {
-        Debug.LogWarning("OnPlayerDetected: Player Transform is null!");
+        Debug.Log("Game is over. Bark sound will not play.");
         return;
     }
 
@@ -189,15 +190,10 @@ public void OnPlayerDetected(Transform player)
         playerToChase = player;
         playerMovement.OnPlayerDetected();
 
-        Debug.Log("Player detected, starting chase...");
+        Debug.Log("Player detected, attempting to play Bark sound.");
         AudioManager.Instance.PlayBarkSound();
     }
-    else
-    {
-        Debug.LogWarning("OnPlayerDetected: PlayerMovement not found or player is hiding.");
-    }
 }
-
 
 public void OnPlayerLost()
 {

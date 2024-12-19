@@ -33,6 +33,8 @@ public class GameController : MonoBehaviour
     private Coroutine hideCountdownCoroutine2;
     private bool grandmaActivated = false;
     private bool winSequenceStarted = false;
+    public bool isGameOver = false; // Tracks if the game is over
+
 
     void Awake()
     {
@@ -61,7 +63,8 @@ public class GameController : MonoBehaviour
         if (currentTime > 0)
         {
             currentTime -= Time.deltaTime;
-            timerText.text = "Time Left: " + Mathf.CeilToInt(currentTime) + "s";
+            timerText.text = $"Time Left: {Mathf.CeilToInt(currentTime)}s".Replace("\n", "");
+
         }
         else
         {
@@ -114,6 +117,8 @@ IEnumerator HandleWinSequence(int totalScore)
     {
         winTextUI.SetActive(true);
         winTextTMP.text = $"You Got Away!";
+
+
     }
 
     public void StartHideCountdown(int playerID)
@@ -190,9 +195,15 @@ IEnumerator HandleWinSequence(int totalScore)
     {
         if (winSequenceStarted) return;
 
+        isGameOver = true; // Set game over state
+
         gameOverUI.SetActive(true);
         Time.timeScale = 0;
+
+        Debug.Log("Stopping Bark sound in Game Over.");
+        AudioManager.Instance.StopBarkSound(); // Stop the barking sound
     }
+
 
     void ResetCoroutine(int playerID)
     {
@@ -204,11 +215,18 @@ IEnumerator HandleWinSequence(int totalScore)
     {
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        AudioManager.Instance.PlayBackgroundMusic();
+        AudioManager.Instance.StopCarDrivingSound();
+        
     }
 
     public void LoadMenu()
     {
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        AudioManager.Instance.StopBackgroundMusic();
+        AudioManager.Instance.StopCarDrivingSound();
+        AudioManager.Instance.StopBarkSound();
+        
     }
 }

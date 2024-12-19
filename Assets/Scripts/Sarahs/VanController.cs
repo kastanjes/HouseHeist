@@ -106,6 +106,8 @@ public class VanController : MonoBehaviour
             AudioManager.Instance.PlayVictorySound();
             
     }
+
+    
 IEnumerator DriveVanAway()
 {
     int totalScore = 0;
@@ -126,12 +128,18 @@ IEnumerator DriveVanAway()
 
     // Play the van animation for exactly 4 seconds
     float elapsedTime = 0f;
+    Vector3 initialPosition = vanTransform.position; // Store the starting position
+    Vector3 targetPosition = initialPosition + Vector3.right * (driveSpeed * 4f); // Calculate the total distance to move
+
     while (elapsedTime < 4f) // Ensure it runs for 4 seconds
     {
-        vanTransform.Translate(Vector3.right * driveSpeed * Time.deltaTime);
+        vanTransform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / 4f); // Smooth movement
         elapsedTime += Time.deltaTime;
         yield return null;
     }
+
+    // Stop the van's movement and snap it to the final position
+    vanTransform.position = targetPosition;
 
     // Stop the Victory Sound after 4 seconds
     AudioManager.Instance.StopVictorySound();

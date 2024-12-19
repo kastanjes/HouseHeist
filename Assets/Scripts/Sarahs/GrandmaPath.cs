@@ -26,6 +26,8 @@ public class GrandmaPath : MonoBehaviour
         currentWaypointIndex = 0; // Start from the first waypoint
         isPaused = false; // Ensure Grandma starts moving
         StartCoroutine(FollowPath());
+        AudioManager.Instance.PlayGrandmaWalkingSound();
+
     }
 
     IEnumerator FollowPath()
@@ -57,20 +59,26 @@ public class GrandmaPath : MonoBehaviour
         DeactivateGrandma();
     }
 
-    IEnumerator MoveToWaypoint(Waypoint waypoint)
+IEnumerator MoveToWaypoint(Waypoint waypoint)
+{
+    while (Vector2.Distance(transform.position, waypoint.point.position) > 0.1f)
     {
-        while (Vector2.Distance(transform.position, waypoint.point.position) > 0.1f)
-        {
-            Vector2 direction = (waypoint.point.position - transform.position).normalized;
-            transform.position = Vector2.MoveTowards(transform.position, waypoint.point.position, speed * Time.deltaTime);
+        Vector2 direction = (waypoint.point.position - transform.position).normalized;
 
-            // Update animation to face movement direction
-            animator.SetFloat("Horizontal", direction.x);
-            animator.SetFloat("Vertical", direction.y);
+        // Update Horizontal parameter
+        animator.SetFloat("Horizontal", direction.x);
 
-            yield return null;
-        }
+        transform.position = Vector2.MoveTowards(transform.position, waypoint.point.position, speed * Time.deltaTime);
+        yield return null;
     }
+
+    // Stop movement, reset Horizontal to 0
+    animator.SetFloat("Horizontal", 0);
+}
+
+
+
+
 
     IEnumerator PauseAtWaypoint(Waypoint waypoint)
     {
@@ -90,7 +98,7 @@ public class GrandmaPath : MonoBehaviour
         }
 
         animator.SetFloat("Horizontal", 0);
-        animator.SetFloat("Vertical", 0);
+        animator.SetFloat("Horizontal", 0);
 
         yield return new WaitForSeconds(waypoint.pauseDuration);
 
@@ -105,20 +113,40 @@ public class GrandmaPath : MonoBehaviour
             Debug.Log("Lights turned OFF in room: " + waypoint.roomToLight.gameObject.name);
         }
     }
+IEnumerator ShootPlayer()
+{
+    AudioManager.Instance.StopGrandmaWalkingSound();
+    AudioManager.Instance.StopBackgroundMusic();
+    AudioManager.Instance.PlayGrandmaScream();
+    AudioManager.Instance.PlayShootingSound();
 
-    IEnumerator ShootPlayer()
+
+
+    // Repeat the shooting animation 4 times
+    for (int i = 0; i < 4; i++)
     {
-        animator.SetTrigger("Shoot");
-
-        // Wait for the shooting animation to play 4 times (adjust as needed)
-        yield return new WaitForSeconds(4f);
-
-        FindObjectOfType<GameController>().TriggerGameOver();
-        yield break;
+        animator.SetTrigger("Shoot"); // Trigger the animation
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length); 
+        // Wait for the duration of the current animation to complete
     }
+
+    // After all animations are finished, wait for 3 seconds before Game Over
+    yield return new WaitForSeconds(3f);
+
+    AudioManager.Instance.PlayGameOverSound();
+
+
+    FindObjectOfType<GameController>().TriggerGameOver(); // Trigger Game Over
+
+}
+
+
+
 
     void DeactivateGrandma()
     {
+        AudioManager.Instance.StopGrandmaWalkingSound();
+
         Debug.Log("Grandma finished her path and is deactivating.");
         gameObject.SetActive(false);
     }

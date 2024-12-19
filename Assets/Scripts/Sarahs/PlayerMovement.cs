@@ -30,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement;
 
+    [Header("Door Interaction")]
+    public float detectionRadius = 1.5f;   // Radius to detect nearby doors
+    public LayerMask doorLayer;            // LayerMask to detect only door objects
+
+
     void Start()
     {
         currentMoveSpeed = moveSpeed;
@@ -37,39 +42,119 @@ public class PlayerMovement : MonoBehaviour
         UpdateScoreText();
     }
 
-    void Update()
+void Update()
+{
+    if (!isHiding)
     {
-        if (!isHiding)
+        // Player 1 Movement
+        if (playerID == 1)
         {
-            // Player movement input
-            if (playerID == 1)
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+        }
+        // Player 2 Movement & Door Interaction
+        else if (playerID == 2)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal2");
+            movement.y = Input.GetAxisRaw("Vertical2");
+
+            DetectDoors(); // Check for doors in range and show text
+
+            if (Input.GetKeyDown(KeyCode.Space)) // Door Interaction Key
             {
-                movement.x = Input.GetAxisRaw("Horizontal");
-                movement.y = Input.GetAxisRaw("Vertical");
+                InteractWithDoor(); // Interact with the door
             }
-            else if (playerID == 2)
+        }
+    }
+    else
+    {
+        movement = Vector2.zero; // Stop movement when hiding
+        HideDoorTexts(); // Hide text when the player moves away or hides
+    }
+
+    UpdateAnimations();
+}
+
+    void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movement * currentMoveSpeed * Time.fixedDeltaTime);
+    }
+
+private void InteractWithDoor()
+{
+    Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectionRadius, doorLayer);
+
+    foreach (Collider2D hit in hits)
+    {
+        Door door = hit.GetComponent<Door>();
+        if (door != null)
+        {
+            door.ShowInteractionText(); // Show the text when in range
+
+            if (Input.GetKeyDown(KeyCode.Space)) // Door Interaction Key
             {
-                movement.x = Input.GetAxisRaw("Horizontal2");
-                movement.y = Input.GetAxisRaw("Vertical2");
+                door.ToggleDoor(); // Open/close the door
+                AudioManager.Instance.PlayDoorOpen();
+                Debug.Log("Door toggled by Player 2.");
+                return;
             }
         }
         else
         {
-            movement = Vector2.zero; // Stop movement when hiding
+            door.HideInteractionText(); // Hide text when interaction ends
         }
+    }
+}
 
-        // Update animations
+
+void OnDrawGizmos()
+{
+    if (playerID == 2) // Only for Player 2
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
+}
+
+
+private void DetectDoors()
+{
+    // Detect doors in a circle around the player
+    Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectionRadius, doorLayer);
+
+    foreach (Collider2D hit in hits)
+    {
+        Door door = hit.GetComponent<Door>();
+        if (door != null)
+        {
+            door.ShowInteractionText(); // Show the interaction text
+        }
+    }
+}
+
+private void HideDoorTexts()
+{
+    Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectionRadius, doorLayer);
+
+    foreach (Collider2D hit in hits)
+    {
+        Door door = hit.GetComponent<Door>();
+        if (door != null)
+        {
+            door.HideInteractionText(); // Hide the interaction text
+        }
+    }
+}
+
+
+    void UpdateAnimations()
+    {
         if (animator != null)
         {
             animator.SetFloat("Horizontal", movement.x);
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Speed", movement.sqrMagnitude);
         }
-    }
-
-    void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + movement * currentMoveSpeed * Time.fixedDeltaTime);
     }
 
     public void AddToScore(int amount)
@@ -96,13 +181,11 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateWeightUI()
     {
-        // Update the slider value
         if (weightBar != null)
         {
             weightBar.value = currentWeight / maxWeight;
         }
 
-        // Update the text above the slider
         if (weightText != null)
         {
             weightText.text = $"Weight: {currentWeight}/{maxWeight}";

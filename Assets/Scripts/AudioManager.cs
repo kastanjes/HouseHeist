@@ -25,41 +25,64 @@ public class AudioManager : MonoBehaviour
     public float victorySoundVolume = 1f;
     private AudioSource victorySoundSource;
 
-void Awake()
-{
-    // Singleton pattern to ensure only one instance exists
-    if (Instance == null)
+    public AudioClip doorOpenClip;
+    public float doorOpenVolume = 1f;
+    private AudioSource doorOpenSource;
+
+    [Header("New Sound Effects")]
+    public AudioClip gameOverSoundClip;
+    public float gameOverSoundVolume = 1f;
+    private AudioSource gameOverSoundSource;
+
+    public AudioClip grandmaWalkingClip;
+    public float grandmaWalkingVolume = 1f;
+    public bool grandmaWalkingLoop = true;
+    private AudioSource grandmaWalkingSource;
+
+    public AudioClip collectablePickupClip;
+    public float collectablePickupVolume = 1f;
+    private AudioSource collectablePickupSource;
+
+    public AudioClip grandmaScreamClip; // NEW
+    public float grandmaScreamVolume = 1f;
+    private AudioSource grandmaScreamSource;
+
+    public AudioClip shootingClip; // NEW
+    public float shootingVolume = 1f;
+    private AudioSource shootingSource;
+
+    void Start()
     {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        PlayBackgroundMusic(); // Ensure this is called
     }
-    else
+
+    void Awake()
     {
-        Destroy(gameObject);
-        return;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // Initialize audio sources
+        musicSource = AddAudioSource(backgroundMusicClip, musicVolume, musicLoop);
+        barkSource = AddAudioSource(barkClip, barkVolume, barkLoop);
+        carDrivingSource = AddAudioSource(carDrivingClip, carDrivingVolume, carDrivingLoop);
+        victorySoundSource = AddAudioSource(victorySound, victorySoundVolume, false);
+        doorOpenSource = AddAudioSource(doorOpenClip, doorOpenVolume, false);
+
+        // Initialize new audio sources
+        gameOverSoundSource = AddAudioSource(gameOverSoundClip, gameOverSoundVolume, false);
+        grandmaWalkingSource = AddAudioSource(grandmaWalkingClip, grandmaWalkingVolume, grandmaWalkingLoop);
+        collectablePickupSource = AddAudioSource(collectablePickupClip, collectablePickupVolume, false);
+        grandmaScreamSource = AddAudioSource(grandmaScreamClip, grandmaScreamVolume, false); // NEW
+        shootingSource = AddAudioSource(shootingClip, shootingVolume, false); // NEW
     }
-
-    // Add AudioSources for background music and sound effects
-    musicSource = gameObject.AddComponent<AudioSource>();
-    musicSource.clip = backgroundMusicClip;
-    musicSource.volume = musicVolume;
-    musicSource.loop = true;
-
-    barkSource = gameObject.AddComponent<AudioSource>();
-    barkSource.clip = barkClip;
-    barkSource.volume = barkVolume;
-    barkSource.loop = true; // Bark sound should loop
-
-    carDrivingSource = gameObject.AddComponent<AudioSource>();
-    carDrivingSource.clip = carDrivingClip;
-    carDrivingSource.volume = carDrivingVolume;
-    carDrivingSource.loop = true;
-
-    victorySoundSource = gameObject.AddComponent<AudioSource>();
-    victorySoundSource.clip = victorySound;
-    victorySoundSource.volume = victorySoundVolume;
-    victorySoundSource.loop = false; // Set looping to false for victory sound
-}
 
     private AudioSource AddAudioSource(AudioClip clip, float volume, bool loop)
     {
@@ -70,75 +93,60 @@ void Awake()
         return source;
     }
 
-    void Start()
+    public void PlaySound(AudioSource source, bool loop = false)
     {
-        PlayBackgroundMusic();
-    }
-
-    public void PlayBackgroundMusic()
-    {
-        if (!musicSource.isPlaying)
-            musicSource.Play();
-    }
-
-    public void StopBackgroundMusic()
-    {
-        if (musicSource.isPlaying)
-            musicSource.Stop();
-    }
-
-    public void PlayBarkSound()
-    {
-        if (!barkSource.isPlaying)
+        if (source != null && !source.isPlaying)
         {
-            Debug.Log("Playing Bark sound");
-            barkSource.Play();
+            source.loop = loop;
+            source.Play();
         }
     }
 
-    public void StopBarkSound()
+    public void StopSound(AudioSource source)
     {
-        if (barkSource.isPlaying)
+        if (source != null && source.isPlaying)
         {
-            Debug.Log("Stopping Bark sound");
-            barkSource.Stop();
+            source.Stop();
         }
     }
 
-    public void PlayCarDrivingSound()
+    // Background Music
+    public void PlayBackgroundMusic() => PlaySound(musicSource, musicLoop);
+    public void StopBackgroundMusic() => StopSound(musicSource);
+
+    // Bark Sound
+    public void PlayBarkSound() => PlaySound(barkSource, barkLoop);
+    public void StopBarkSound() => StopSound(barkSource);
+
+    // Car Driving Sound
+    public void PlayCarDrivingSound() => PlaySound(carDrivingSource, carDrivingLoop);
+    public void StopCarDrivingSound() => StopSound(carDrivingSource);
+
+    // Victory Sound
+    public void PlayVictorySound() => PlaySound(victorySoundSource, false);
+    public void StopVictorySound() => StopSound(victorySoundSource);
+
+    // Door Open Sound
+    public void PlayDoorOpen()
     {
-        if (!carDrivingSource.isPlaying)
-        {
-            Debug.Log("Playing Car Driving sound");
-            carDrivingSource.Play();
-        }
+        PlaySound(doorOpenSource, false);
+        Debug.Log("Playing door open sound.");
     }
 
-    public void StopCarDrivingSound()
-    {
-        if (carDrivingSource.isPlaying)
-        {
-            Debug.Log("Stopping Car Driving sound");
-            carDrivingSource.Stop();
-        }
-    }
+    // Game Over Sound
+    public void PlayGameOverSound() => PlaySound(gameOverSoundSource, false);
+    public void StopGameOverSound() => StopSound(gameOverSoundSource);
 
-    public void PlayVictorySound()
-    {
-        if (!victorySoundSource.isPlaying) // Ensure it only plays once
-        {
-            Debug.Log("Victory Sound Loop State: " + victorySoundSource.loop);
-            Debug.Log("Playing Victory sound");
-            victorySoundSource.Play();
-        }
-    }
+    // Grandma Walking Sound
+    public void PlayGrandmaWalkingSound() => PlaySound(grandmaWalkingSource, grandmaWalkingLoop);
+    public void StopGrandmaWalkingSound() => StopSound(grandmaWalkingSource);
 
-    public void StopVictorySound()
-    {
-        if (victorySoundSource.isPlaying)
-        {
-            Debug.Log("Stopping Victory sound");
-            victorySoundSource.Stop();
-        }
-    }
+    // Collectable Pickup Sound
+    public void PlayCollectablePickupSound() => PlaySound(collectablePickupSource, false);
+
+    // Grandma Scream Sound
+    public void PlayGrandmaScream() => PlaySound(grandmaScreamSource, false);
+
+    // Shooting Sound
+    public void PlayShootingSound() => PlaySound(shootingSource, false);
 }

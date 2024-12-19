@@ -22,6 +22,7 @@ public void LoadGame()
 {
     Debug.Log("Load Game triggered");
     Time.timeScale = 1; // Ensure the game is not paused
+    AudioManager.Instance.PlayBackgroundMusic();
     UnityEngine.SceneManagement.SceneManager.LoadScene("Sarahs"); // Replace "MainGame" with your actual game scene name
 }
 
