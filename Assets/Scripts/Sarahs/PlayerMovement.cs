@@ -159,8 +159,11 @@ private void HideDoorTexts()
 
     public void AddToScore(int amount)
     {
+        
         score += amount;
         UpdateScoreText();
+        
+
     }
 
     public void AddWeight(float weight)
@@ -188,7 +191,7 @@ private void HideDoorTexts()
 
         if (weightText != null)
         {
-            weightText.text = $"Weight: {currentWeight}/{maxWeight}";
+            weightText.text = $"Weight: {currentWeight}/{maxWeight} kg";
         }
     }
 
@@ -196,6 +199,8 @@ private void HideDoorTexts()
     {
         if (scoreText != null)
         {
+            
+
             scoreText.text = $"{playerName}: {score}$";
         }
     }

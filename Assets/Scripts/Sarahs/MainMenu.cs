@@ -1,29 +1,37 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
-    public void PlayGame ()
+    void Start()
     {
+        // Play main menu music if this is the main menu scene
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            AudioManager.Instance.PlayMainMenuMusic();
+        }
+    }
+
+    public void PlayGame()
+    {
+        // Stop main menu music and load the game scene
+        AudioManager.Instance.StopMainMenuMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void QuitGame ()
+    public void QuitGame()
     {
         Debug.Log("QUIT!");
         Application.Quit();
-
     }
 
-public void LoadGame()
-{
-    Debug.Log("Load Game triggered");
-    Time.timeScale = 1; // Ensure the game is not paused
-    AudioManager.Instance.PlayBackgroundMusic();
-    UnityEngine.SceneManagement.SceneManager.LoadScene("Sarahs"); // Replace "MainGame" with your actual game scene name
-}
-
+    public void LoadGame()
+    {
+        Debug.Log("Load Game triggered");
+        Time.timeScale = 1; // Ensure the game is not paused
+        AudioManager.Instance.StopMainMenuMusic(); // Stop main menu music
+        AudioManager.Instance.PlayBackgroundMusic(); // Start game background music
+        SceneManager.LoadScene("Sarahs"); // Replace with your game scene name
+    }
 }

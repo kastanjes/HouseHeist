@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Sarahs.unity
-    guid: 129613d199d3d3a4db8ad8d26997ad16
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: b66ab1cf17f0249d8be7602eae013b19
+  - enabled: 1
+    path: Assets/Scenes/Sarahs.unity
+    guid: 129613d199d3d3a4db8ad8d26997ad16
   m_configObjects: {}

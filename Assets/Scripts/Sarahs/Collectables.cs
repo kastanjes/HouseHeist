@@ -73,7 +73,22 @@ public class Collectable : MonoBehaviour
             player.AddWeight(weight);
         }
 
+        // Play a specific sound based on the tag of the collectable
+        switch (tag)
+        {
+            case "Money":
+                AudioManager.Instance.PlayHidingSound(AudioManager.Instance.plantHideClip); // Replace with the Money sound
+                break;
+            case "Bigger":
+                AudioManager.Instance.PlayHidingSound(AudioManager.Instance.closetHideClip); // Replace with the Bigger sound
+                break;
+            default:
+                Debug.LogWarning($"No sound assigned for tag: {tag}");
+                break;
+        }
+
         Destroy(floatingTextInstance);
         Destroy(gameObject);
     }
+
 }

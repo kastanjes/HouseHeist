@@ -35,6 +35,14 @@ public class GameController : MonoBehaviour
     private bool winSequenceStarted = false;
     public bool isGameOver = false; // Tracks if the game is over
 
+    [Header("Pause Screen")]
+    public GameObject pauseUI;         // Canvas for Pause Screen
+    public Button resumeButton;        // Resume Button
+    public Button pauseMenuButton;     // Menu Button
+    public GameObject pauseSprite;     // Sprite/Graphic for Pause Screen
+
+    public bool isPaused = false;     // Tracks if the game is paused
+
 
     void Awake()
     {
@@ -54,7 +62,13 @@ public class GameController : MonoBehaviour
 
         tryAgainButton.onClick.AddListener(RestartLevel);
         menuButton.onClick.AddListener(LoadMenu);
+
+        resumeButton.onClick.AddListener(ResumeGame);
+        pauseMenuButton.onClick.AddListener(LoadMenu);
+        
+
     }
+
 
     void Update()
     {
@@ -70,6 +84,15 @@ public class GameController : MonoBehaviour
         {
             TriggerGameOver();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver)
+        {
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
+
     }
 public void TriggerWinSequence(int totalScore)
 {
@@ -130,46 +153,81 @@ IEnumerator HandleWinSequence(int totalScore)
             hideCountdownCoroutine2 = StartCoroutine(HideCountdown(player2HideTextUI, 2));
     }
 
-    IEnumerator HideCountdown(GameObject hideText, int playerID)
+// Method to handle the hide countdown
+IEnumerator HideCountdown(GameObject hideText, int playerID)
+{
+    hideText.SetActive(true); // Show the hide text
+    int countdown = 5; // Start countdown at 5 seconds
+
+    while (countdown > 0)
     {
-        hideText.SetActive(true);
-        int countdown = 5;
-
-        while (countdown > 0)
+        // If player hides, stop the countdown and hide the text
+        if (PlayerHid(playerID))
         {
-            if (PlayerHid(playerID))
-            {
-                hideText.SetActive(false);
-                ResetCoroutine(playerID);
-                yield break;
-            }
-
-            hideText.GetComponent<TMP_Text>().text = $"Hide! {countdown}s";
-            yield return new WaitForSeconds(1f);
-            countdown--;
+            Debug.Log($"Player {playerID} hid successfully. Countdown stopped.");
+            hideText.SetActive(false); // Hide the hide text
+            ResetCoroutine(playerID); // Reset the coroutine reference
+            yield break; // Exit the coroutine
         }
 
-        hideText.SetActive(false);
-        ActivateGrandma();
+        // Update the text to show the current countdown value
+        TMP_Text textComponent = hideText.GetComponent<TMP_Text>();
+        if (textComponent != null)
+        {
+            textComponent.text = $"Hide! {countdown}s";
+        }
+        else
+        {
+            Debug.LogError("Hide text GameObject does not have a TMP_Text component.");
+        }
+
+        yield return new WaitForSeconds(1f); // Wait for 1 second
+        countdown--; // Decrease the countdown
     }
 
-    void ActivateGrandma()
-{
-    if (!grandmaActivated)
-    {
-        grandmaActivated = true;
-        player1HideTextUI.SetActive(false);
-        player2HideTextUI.SetActive(false);
+    // If the countdown finishes without the player hiding
+    Debug.Log($"Player {playerID} failed to hide. Activating Grandma.");
+    hideText.SetActive(false); // Hide the hide text
+    ActivateGrandma(); // Trigger Grandma activation
+    ResetCoroutine(playerID); // Reset the coroutine reference
+}
 
-        // Find and activate Grandma using EnemyManager (ensure you have this script set up)
+// Method to activate Grandma and show the Grandma text
+void ActivateGrandma()
+{
+    if (!grandmaActivated) // Only activate Grandma if she isn’t already active
+    {
+        grandmaActivated = true; // Set Grandma as active
+
+        // Hide all hide texts to ensure only Grandma's text is visible
+        if (player1HideTextUI != null) player1HideTextUI.SetActive(false);
+        if (player2HideTextUI != null) player2HideTextUI.SetActive(false);
+
+        // Activate Grandma through the EnemyManager
         EnemyManager enemyManager = FindObjectOfType<EnemyManager>();
         if (enemyManager != null)
         {
             enemyManager.ActivateGrandma();
         }
 
-        StartCoroutine(ShowGrandmaText());
+        // Show Grandma’s text for a short duration
+        if (grandmaIsComingTextUI != null)
+        {
+            StartCoroutine(ShowGrandmaTextRoutine());
+        }
+        else
+        {
+            Debug.LogError("Grandma text UI reference is missing!");
+        }
     }
+}
+
+// Coroutine to show Grandma’s text for a set duration
+private IEnumerator ShowGrandmaTextRoutine()
+{
+    grandmaIsComingTextUI.SetActive(true); // Show the Grandma text
+    yield return new WaitForSeconds(3f); // Wait for 3 seconds
+    grandmaIsComingTextUI.SetActive(false); // Hide the Grandma text
 }
 
 
@@ -211,22 +269,77 @@ IEnumerator HandleWinSequence(int totalScore)
         if (playerID == 2) hideCountdownCoroutine2 = null;
     }
 
-    public void RestartLevel()
-    {
-        Time.timeScale = 1;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-        AudioManager.Instance.PlayBackgroundMusic();
-        AudioManager.Instance.StopCarDrivingSound();
-        
-    }
+public void RestartLevel()
+{
+    Time.timeScale = 1;
+
+    // Stop all sounds explicitly
+    AudioManager.Instance.ResetCarDrivingSource();
+    AudioManager.Instance.StopVictorySound();
+    AudioManager.Instance.StopBarkSound();
+
+    // Reload the scene
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    // Ensure background music starts again after the scene reload
+    StartCoroutine(PlayBackgroundMusicAfterSceneReload());
+}
+
+private IEnumerator PlayBackgroundMusicAfterSceneReload()
+{
+    yield return new WaitForEndOfFrame(); // Wait for the scene to reload
+    AudioManager.Instance.PlayBackgroundMusic();
+}
+
+
+
+
 
     public void LoadMenu()
     {
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-        AudioManager.Instance.StopBackgroundMusic();
-        AudioManager.Instance.StopCarDrivingSound();
-        AudioManager.Instance.StopBarkSound();
+    AudioManager.Instance.StopAllSounds();
         
     }
+
+public void PauseGame()
+{
+    Debug.Log("PauseGame called");
+    isPaused = true;
+    Time.timeScale = 0; // Freeze the game
+    pauseUI.SetActive(true);
+    pauseSprite.SetActive(true);
+
+    // Pause all sounds
+    AudioManager.Instance.PauseAllSounds();
+
+    // Stop the barking sound explicitly
+    AudioManager.Instance.StopBarkSound();
+}
+
+
+
+public void ResumeGame()
+{
+    Debug.Log("ResumeGame called");
+    isPaused = false;
+    Time.timeScale = 1; // Resume the game
+    pauseUI.SetActive(false);
+    pauseSprite.SetActive(false);
+
+    // Resume all sounds
+    AudioManager.Instance.ResumeAllSounds();
+
+    // Restart the barking sound if the enemy is still chasing
+    EnemyRoaming[] enemies = FindObjectsOfType<EnemyRoaming>();
+    foreach (EnemyRoaming enemy in enemies)
+    {
+        if (enemy.IsChasing)
+        {
+            Debug.Log("Restarting Bark sound for chasing enemy.");
+            AudioManager.Instance.PlayBarkSound();
+        }
+    }
+}
 }

@@ -82,21 +82,54 @@ public class HidingPlace : MonoBehaviour
         }
     }
 
-    void HandleInput(GameObject player)
+void HandleInput(GameObject player)
+{
+    if ((Input.GetKeyDown(KeyCode.E) && player.name == "Player1") || 
+        (Input.GetKeyDown(KeyCode.Space) && player.name == "Player2"))
     {
-        if ((Input.GetKeyDown(KeyCode.E) && player.name == "Player1") || 
-            (Input.GetKeyDown(KeyCode.Space) && player.name == "Player2"))
+        if (!isPlayerHiding) // Hide the player
         {
-            if (!isPlayerHiding) // Hide the player
+            // Detect the hiding spot
+            Collider2D hidingSpot = Physics2D.OverlapCircle(transform.position, detectionRadius, LayerMask.GetMask("HidingSpots"));
+            
+            if (hidingSpot != null) // Ensure a hiding spot is detected
             {
+                // Play hiding sound based on the tag
+                switch (hidingSpot.tag)
+                {
+                    case "Plant":
+                        AudioManager.Instance.PlayHidingSound(AudioManager.Instance.plantHideClip);
+                        break;
+                    case "Closet":
+                        AudioManager.Instance.PlayHidingSound(AudioManager.Instance.closetHideClip);
+                        break;
+                    case "Clothes":
+                        AudioManager.Instance.PlayHidingSound(AudioManager.Instance.clothesHideClip);
+                        break;
+                    case "Bathtub": // New case for bathtub
+                        AudioManager.Instance.PlayHidingSound(AudioManager.Instance.bathtubHideClip);
+                        break;
+                    default:
+                        Debug.LogWarning("No sound available for hiding spot tag: " + hidingSpot.tag);
+                        break;
+                }
+
+                // Hide the player
                 HidePlayer(player.transform);
             }
-            else if (hidingPlayer == player.transform) // Unhide the player
+            else
             {
-                UnhidePlayer();
+                Debug.LogWarning("No hiding spot detected!");
             }
         }
+        else if (hidingPlayer == player.transform) // Unhide the player
+        {
+            UnhidePlayer();
+        }
     }
+}
+
+
 
     void HidePlayer(Transform player)
     {

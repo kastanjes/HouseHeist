@@ -7,6 +7,10 @@ TagManager:
   - EnemyDog
   - Wall
   - Collectables
+  - Plant
+  - Closet
+  - Clothes
+  - Bathtub
   layers:
   - Default
   - TransparentFX
@@ -21,7 +25,7 @@ TagManager:
   - Player
   - Lights
   - Door
-  - 
+  - HidingSpots
   - 
   - 
   - 

@@ -27,7 +27,7 @@ public class EnemyVisionCone : MonoBehaviour
         // Add a transparent red material
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        meshRenderer.material.color = new Color(1f, 0f, 0f, 0.05f); // Transparent red
+        meshRenderer.material.color = new Color(1f, 0f, 0f, 0.02f); // Transparent red
     }
 
     void Update()

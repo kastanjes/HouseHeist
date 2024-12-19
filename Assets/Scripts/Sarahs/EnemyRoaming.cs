@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class EnemyRoaming : MonoBehaviour
@@ -176,10 +175,10 @@ public class EnemyRoaming : MonoBehaviour
 
 public void OnPlayerDetected(Transform player)
 {
-    // Exit early if the game is over
-    if (GameController.Instance != null && GameController.Instance.isGameOver)
+    // Exit early if the game is paused or game is over
+    if (GameController.Instance != null && (GameController.Instance.isGameOver || GameController.Instance.isPaused))
     {
-        Debug.Log("Game is over. Bark sound will not play.");
+        Debug.Log("Game is paused or over. Bark sound will not play.");
         return;
     }
 
@@ -194,6 +193,8 @@ public void OnPlayerDetected(Transform player)
         AudioManager.Instance.PlayBarkSound();
     }
 }
+
+
 
 public void OnPlayerLost()
 {

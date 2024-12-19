@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3627952709893345761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 411504729669464763}
+  - component: {fileID: 7632057817816876067}
+  - component: {fileID: 721370301600414502}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &411504729669464763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3627952709893345761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.4534755, y: -18.839422, z: -0.068647355}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7632057817816876067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3627952709893345761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca834b5dee23546dfaa741f6fb05b3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolume: 1
+  backgroundMusicClip: {fileID: 8300000, guid: b38ff2bbf901545978a5523d47ce0fa7, type: 3}
+  musicVolume: 0.4
+  musicLoop: 1
+  barkClip: {fileID: 8300000, guid: aa98ca9f42475d14e9f43b80eee33d9c, type: 3}
+  barkVolume: 0.6
+  barkLoop: 1
+  carDrivingClip: {fileID: 8300000, guid: 8e4ec8e4214f830428a33ee58ee17cb6, type: 3}
+  carDrivingVolume: 2
+  carDrivingLoop: 1
+  victorySound: {fileID: 8300000, guid: 6fa1d38aad1568d48b216fd9d39d2b5f, type: 3}
+  victorySoundVolume: 0.4
+  doorOpenClip: {fileID: 8300000, guid: 6308236b39a382945b9d59849b689dee, type: 3}
+  doorOpenVolume: 0.7
+  gameOverSoundClip: {fileID: 8300000, guid: 83c9c062864f80d42b8dedbfb47afbd7, type: 3}
+  gameOverSoundVolume: 0.5
+  grandmaWalkingClip: {fileID: 8300000, guid: 684aa9e4dd4e14e28a3538e7fbe62e23, type: 3}
+  grandmaWalkingVolume: 0.3
+  grandmaWalkingLoop: 1
+  collectablePickupClip: {fileID: 8300000, guid: b31ecd31485700b4a87abab762a1b50c, type: 3}
+  collectablePickupVolume: 1
+  moneyPickupClip: {fileID: 8300000, guid: b31ecd31485700b4a87abab762a1b50c, type: 3}
+  biggerPickupClip: {fileID: 8300000, guid: 9c8c0ede7a9854347b60008ccef1134f, type: 3}
+  grandmaScreamClip: {fileID: 8300000, guid: 0ca899ec2a2fb4fe5b184e336351a54c, type: 3}
+  grandmaScreamVolume: 0.7
+  shootingClip: {fileID: 8300000, guid: a34c3a4b9b01bdd4494f774ecb189eb9, type: 3}
+  shootingVolume: 0.7
+  plantHideClip: {fileID: 8300000, guid: f55ba60d22389404c934f8ea27d0f8d0, type: 3}
+  closetHideClip: {fileID: 8300000, guid: b5f6444ace0c94a8eb704422da39bc0c, type: 3}
+  clothesHideClip: {fileID: 8300000, guid: 86e60e9d30c38a44892f55e9c0b24fb0, type: 3}
+  bathtubHideClip: {fileID: 8300000, guid: c3fb2d7fab4516c4ba81bc42d278ffeb, type: 3}
+  mainMenuMusicClip: {fileID: 8300000, guid: 3aa6928b58e574911a84e0780fc57079, type: 3}
+  mainMenuMusicVolume: 0.4
+--- !u!81 &721370301600414502
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3627952709893345761}
+  m_Enabled: 1
